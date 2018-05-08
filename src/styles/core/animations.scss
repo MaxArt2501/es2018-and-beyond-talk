@@ -1,0 +1,26 @@
+ul.falling {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 5vmin;
+
+  > li {
+    position: fixed;
+    top: 0;
+    left: 0;
+    animation: falling 3s infinite forwards;
+    transform: translate3d(-50%, -100%, 0);
+    background: rgba(white, .15);
+    padding: .25em 1em;
+    border-radius: 2em;
+  }
+}
+
+@keyframes falling {
+  from {
+    transform: translate3d(-50%, -100%, 0);
+  }
+  to {
+    transform: translate3d(-50%, 100vh, 0);
+  }
+}
