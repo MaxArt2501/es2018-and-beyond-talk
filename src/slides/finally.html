@@ -1,0 +1,16 @@
+<h3>This should be clear:</h3>
+<pre><code class="javascript">someAsyncStuff()
+  .then(dealWithResult)
+  .catch(handleMess)
+  .finally(cleanUp)</code></pre>
+</div>
+<div>
+<h3>Also with <code>async</code>/<code>await</code>:</h3>
+<pre><code class="javascript">try {
+  const res = await someAsyncStuff()
+  await dealWithResult(res)
+} catch (e) {
+  handleMess(e)
+} finally {
+  cleanUp()
+}</code></pre>
