@@ -1,0 +1,34 @@
+<div>
+  <h3>New stuff for regexes!</h3>
+  <h4>I.e.: new ways to make two problems out of one</h4>
+</div>
+<div>
+  <h2><code>dotAll</code></h2>
+  <pre><code class="javascript">/\./.test('\n')  // 👎
+/\./s.test('\n') // 👍</code></pre>
+</div>
+<div>
+  <h2>Named captures</h2>
+  <pre><code class="javascript">const re = /^(?&lt;protocol>https?):/
+const match = re.exec(url)
+console.log(match.groups.protocol)</code></pre>
+</div>
+<div>
+  <h2>Lookbehinds</h2>
+  <p>Check if something comes <em>before</em>:</p>
+  <pre><code class="javascript">const re = /(?<\. )[a-z]/g
+title = title.replace(re, i => i.toUpperCase())
+  </code></pre>
+</div>
+<div>
+  <h2>Unicode escapes</h2>
+  <p>Syntax: <code>\p(<em>category_name</em>=<em>set_name</em>)</code></p>
+  <p>Use <code>\P</code> to <em>not</em> include the set.</p>
+  <pre><code class="javascript">const greek = /^\p{Script=Greek}+$/
+console.log(greek.test('μετά')) // 👍</code></pre>
+</div>
+<div>
+  <pre><code class="javascript">const num = /^\p{Decimal_Number}+$/
+console.log(num.test('𝟏𝟜𝟩𝟬𝟼')) // 👍</code></pre>
+  <p>If the category is <code>General_Category</code>, it can be omitted</p>
+</div>
