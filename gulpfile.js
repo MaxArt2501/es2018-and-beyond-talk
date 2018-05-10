@@ -12,11 +12,11 @@ const watch = gulp.watch.bind(gulp);
 task('slides', () => {
   const html = readFileSync('src/index.html', 'utf8');
   const parsed = html.replace(
-    /\sdata-slide=(['"])(.+?)\1[\s\S]*?>/g,
-    (m, quote, source) => {
+    /\bslide:(.+?)\s/g,
+    (m, source) => {
       try {
         const slide = readFileSync(`src/slides/${source}.html`, 'utf-8');
-        return m + slide;
+        return slide;
       } catch (e) {
         console.error(`Slide not found: ${source}`);
         return m;
