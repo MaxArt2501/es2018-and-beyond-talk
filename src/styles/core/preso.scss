@@ -1,0 +1,52 @@
+code {
+  background: rgba(black, .1);
+  border-radius: .25em;
+
+  pre > & {
+    box-shadow: 0 0 0 .5em rgba(black, .1);
+  }
+  :not(pre) > & {
+    display: inline-block;
+    padding: .2em .35em;
+    line-height: 1;
+  }
+}
+
+.center {
+  text-align: center;
+}
+.one-line {
+  white-space: nowrap;
+}
+
+.our-header {
+  &::before {
+    content: "|";
+    color: $brand-color;
+    float: left;
+    margin-left: -.33em;
+  }
+}
+
+.slide-container:first-child {
+  background: $brand-color;
+  outline: 50vmin solid $brand-color;
+  color: white;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -15%;
+    right: 0;
+    bottom: -15%;
+    left: 0;
+    background: url("../img/logo-antreem-contour.svg") center/contain no-repeat;
+  }
+
+  img {
+    width: 25%;
+    display: block;
+    margin: 2rem auto;
+  }
+}

@@ -39,7 +39,7 @@
   color: #bf79db;
 }
 
-.light .hljs-class,
+.brand .hljs-class,
 .dark .hljs-string,
 .dark .hljs-bullet,
 .dark .hljs-subst,
@@ -68,53 +68,53 @@
 /**
  * Monokai style - ported by Luigi Maselli - http://grigio.org
  */
-.light .hljs {
+.brand .hljs {
   color: #34383e;
 }
 
-.light .hljs-tag,
-.light .hljs-keyword,
-.light .hljs-selector-tag,
-.light .hljs-literal,
-.light .hljs-strong,
-.light .hljs-name {
+.brand .hljs-tag,
+.brand .hljs-keyword,
+.brand .hljs-selector-tag,
+.brand .hljs-literal,
+.brand .hljs-strong,
+.brand .hljs-name {
   color: #d13787;
 }
 
-.light .hljs-code {
+.brand .hljs-code {
   color: #66d9ef;
 }
 
-.light .hljs-attribute,
-.light .hljs-symbol,
-.light .hljs-regexp,
-.light .hljs-number,
-.light .hljs-link {
+.brand .hljs-attribute,
+.brand .hljs-symbol,
+.brand .hljs-regexp,
+.brand .hljs-number,
+.brand .hljs-link {
   color: #01988c;
 }
 
-.light .hljs-class,
-.light .hljs-string,
-.light .hljs-bullet,
-.light .hljs-subst,
-.light .hljs-title,
-.light .hljs-section,
-.light .hljs-emphasis,
-.light .hljs-type,
-.light .hljs-built_in,
-.light .hljs-builtin-name,
-.light .hljs-selector-attr,
-.light .hljs-selector-pseudo,
-.light .hljs-addition,
-.light .hljs-variable,
-.light .hljs-template-tag,
-.light .hljs-template-variable {
+.brand .hljs-class,
+.brand .hljs-string,
+.brand .hljs-bullet,
+.brand .hljs-subst,
+.brand .hljs-title,
+.brand .hljs-section,
+.brand .hljs-emphasis,
+.brand .hljs-type,
+.brand .hljs-built_in,
+.brand .hljs-builtin-name,
+.brand .hljs-selector-attr,
+.brand .hljs-selector-pseudo,
+.brand .hljs-addition,
+.brand .hljs-variable,
+.brand .hljs-template-tag,
+.brand .hljs-template-variable {
   color: #5d4fa1;
 }
 
-.light .hljs-comment,
-.light .hljs-quote,
-.light .hljs-deletion,
-.light .hljs-meta {
+.brand .hljs-comment,
+.brand .hljs-quote,
+.brand .hljs-deletion,
+.brand .hljs-meta {
   color: #a0a1a7;
 }

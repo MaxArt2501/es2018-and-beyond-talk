@@ -1,18 +1,4 @@
 @import "./defs/variables.scss";
 @import "./core/typography.scss";
 @import "./core/animations.scss";
-
-:not(pre) > code {
-  display: inline-block;
-  background: rgba(white, .15);
-  padding: .2em .35em;
-  line-height: 1;
-  border-radius: .25em;
-}
-
-.center {
-  text-align: center;
-}
-.one-line {
-  white-space: nowrap;
-}
+@import "./core/preso.scss";

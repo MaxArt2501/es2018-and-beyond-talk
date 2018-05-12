@@ -25,38 +25,21 @@ em {
   font-style: normal;
 }
 
-.dark {
-  background: #272c32;
-  color: #fff;
+.brand a {
+  color: #60f;
 }
 
-.dark em {
-  color: #fadb03;
-}
-
-.light a {
-  color: #0889d1;
-}
-
-.dark a {
-  color: #7cbfe5;
-}
-
-.dark a:hover {
-  background: #4e5b6f;
-}
-
-.light {
+.brand {
   background: #f5f5f5;
   color: #34383e;
 }
 
-.light em {
-  color: #d13787;
+.brand em {
+  color: #f60;
 }
 
-.light a:hover {
-  color: #0069a4;
+.brand a:hover {
+  color: #06f;
 }
 
 img {

@@ -8,11 +8,14 @@ ul.falling {
     position: fixed;
     top: 0;
     left: 0;
-    animation: falling 3s infinite forwards;
+    animation: falling 3s infinite forwards ease-in;
     transform: translate3d(-50%, -100%, 0);
-    background: rgba(white, .15);
+    background: rgba(black, .1);
     padding: .25em 1em;
     border-radius: 2em;
+  }
+  code {
+    background: none;
   }
 }
 
