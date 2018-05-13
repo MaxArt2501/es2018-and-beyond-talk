@@ -1,20 +1,21 @@
 <div>
-  <h3>New stuff for regexes!</h3>
+  <h2 class="our-header">New stuff for regexes!</h2>
   <h4>I.e.: new ways to make two problems out of one</h4>
 </div>
 <div>
-  <h2><code>dotAll</code></h2>
+  <h2 class="our-header"><code>dotAll</code></h2>
   <pre><code class="javascript">/./.test('\n')  // 👎
 /./s.test('\n') // 👍</code></pre>
+  <a class="link babel" href="https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-dotall-regex">transform-dotall-regex</a>
 </div>
 <div>
-  <h2>Named captures</h2>
+  <h2 class="our-header">Named captures</h2>
   <pre><code class="javascript">const re = /^(?&lt;protocol>https?):/
 const match = re.exec(url)
 console.log(match.groups.protocol)</code></pre>
 </div>
 <div>
-  <h2>Lookbehinds</h2>
+  <h2 class="our-header">Lookbehinds</h2>
   <p>Check if something comes <em>before</em>:</p>
   <pre><code class="javascript">const re = /(?<\. )[a-z]/g
 title = title.replace
@@ -22,7 +23,7 @@ title = title.replace
   </code></pre>
 </div>
 <div>
-  <h2>Unicode escapes</h2>
+  <h2 class="our-header">Unicode escapes</h2>
   <p>Syntax: <code>\p(<em>category_name</em>=<em>set_name</em>)</code></p>
   <p>Use <code>\P</code> to <em>not</em> include the set.</p>
   <pre><code class="javascript">const greek = /^\p{Script=Greek}+$/

@@ -1,27 +1,17 @@
 <div>
-  <h3>This should be clear:</h3>
+  <h3 class="our-header">This should be clear:</h3>
 <pre><code class="javascript">someAsyncStuff()
   .then(dealWithResult)
   .catch(handleMess)
   .finally(cleanUp)</code></pre>
+  <a href="https://www.npmjs.com/package/promise.prototype.finally" class="link npm">promise.prototype.finally</a>
 </div>
 <div>
-  <h3>Also with <code>async</code>/<code>await</code>:</h3>
-  <pre><code class="javascript">try {
-  const res = await someAsyncStuff()
-  await dealWithResult(res)
-} catch (e) {
-  handleMess(e)
-} finally {
-  cleanUp()
-}</code></pre>
-</div>
-<div>
-  <h4 class="one-line">Can't I just use another <code>then</code>?</h4>
+  <h4 class="one-line our-header">Can't I just use another <code>then</code>?</h4>
   <div class="center" style="font-size: 2em">🤔</div>
 </div>
 <div>
-  <h2>Nope.</h2>
+  <h2 class="our-header">Nope.</h2>
   <pre><code class="javascript">someAsyncStuff()
   .then(dealWithResult)
   .catch(() => throw 'up')

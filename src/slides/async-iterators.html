@@ -1,13 +1,16 @@
 <div>
-  <code>for await...of</code>
-  <h3>or better: <em>asynchronous generators</em></h3>
+  <h3 class="our-header">
+    <code>for await...of</code><br>
+    or better: <em>asynchronous generators</em>
+  </h3>
   <pre><code class="javascript">async function* spillButChill() {
   for (const thing of list)
     yield thing
 }</code></pre>
+  <a class="link babel" href="https://babeljs.io/docs/plugins/transform-async-generator-functions/">transform-async-generator-functions</a>
 </div>
 <div>
-  <h3>And then it's like</h3>
+  <h3 class="our-header">And then it's like</h3>
   <pre><code class="javascript">const iterable = spillButChill()
 for <em>await</em> (const thing of iterable) {
   console.log('This thing:', thing)
@@ -25,7 +28,7 @@ iterator.next()
   .then(thing2 => console.log('More:', thing2))</code></pre>
 </div>
 <div>
-  <h3>A use case w/ Node 10</h3>
+  <h3 class="our-header">A use case w/ Node 10</h3>
   <pre><code class="javascript">const stream = fs.createReadStream(filepath)
 let size = 0
 for await (const chunk of stream) {
