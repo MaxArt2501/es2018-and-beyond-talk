@@ -1,0 +1,57 @@
+<div>
+  <h2 class="our-header one-line">Static class fields/methods 🚀2</h2>
+  <pre><code class="javascript">class Covfefe extends React.Component {
+  static defaultProps = { wtf: 9001 }
+  static getRandom(max = 10000) {
+    const wtf = Math.floor(Math.random(max))
+    return &lt;Covfefe wtf={wtf}/>
+  }
+}</code></pre>
+</div>
+<div>
+  <h2 class="our-header one-line">Decorators 🚀2</h2>
+  <pre><code class="javascript">@defineElement('date-picker')
+class DatePicker extends HTMLElement {
+  @readonly
+  today = new Date();
+
+  @bound
+  clickHandler() {
+    // ...
+  }
+}</code></pre>
+</div>
+<div>
+  <h3>Decorators are <em>functions</em></h3>
+  <pre><code class="javascript">function bound(methodDescriptor) {
+  return {
+    ...methodDescriptor,
+    extras: [{ /* bound method descriptor */ }]
+  }
+}</code></pre>
+<a class="link babel" href="https://babeljs.io/docs/plugins/transform-decorators/">transform-decorators</a>
+</div>
+<div>
+  <h2 class="our-header">Observables 🚀1</h2>
+  <p>A-la RxJS <em>5</em>:</p>
+  <pre><code class="javascript">// Don't extend native prototypes, FFS!
+HTMLElement.prototype.on = function(eventName) {
+  return new Observable(observer => {
+    const handler = event => observer.next(event)
+    this.addEventListener(eventName, handler)
+    return () => this.removeEventListener(eventName, handler)
+  });
+}
+theInput.on('keydown')
+  .filter(({ key }) => key === 'Escape')
+  .subscribe(() => theInput.value = '')</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Optional chaining 🚀1</h2>
+  <pre><code class="javascript">const street = address ? address.street : undefined
+// becomes...
+const street = address?.street
+
+// Also for optional methods:
+user.resetPassword?.()</code></pre>
+</div>
