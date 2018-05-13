@@ -62,7 +62,7 @@
 .dark .hljs-quote,
 .dark .hljs-deletion,
 .dark .hljs-meta {
-  color: hsl(122, 45%, 30%);
+  color: #c3c0af;
 }
 
 /**
@@ -116,5 +116,5 @@
 .brand .hljs-quote,
 .brand .hljs-deletion,
 .brand .hljs-meta {
-  color: #a0a1a7;
+  color: hsl(122, 45%, 30%);
 }
