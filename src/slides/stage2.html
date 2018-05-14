@@ -31,27 +31,3 @@ class DatePicker extends HTMLElement {
 }</code></pre>
 <a class="link babel" href="https://babeljs.io/docs/plugins/transform-decorators/">transform-decorators</a>
 </div>
-<div>
-  <h2 class="our-header">Observables 🚀1</h2>
-  <p>A-la RxJS <em>5</em>:</p>
-  <pre><code class="javascript">// Don't extend native prototypes, FFS!
-HTMLElement.prototype.on = function(eventName) {
-  return new Observable(observer => {
-    const handler = event => observer.next(event)
-    this.addEventListener(eventName, handler)
-    return () => this.removeEventListener(eventName, handler)
-  });
-}
-theInput.on('keydown')
-  .filter(({ key }) => key === 'Escape')
-  .subscribe(() => theInput.value = '')</code></pre>
-</div>
-<div>
-  <h2 class="our-header">Optional chaining 🚀1</h2>
-  <pre><code class="javascript">const street = address ? address.street : undefined
-// becomes...
-const street = address?.street
-
-// Also for optional methods:
-user.resetPassword?.()</code></pre>
-</div>

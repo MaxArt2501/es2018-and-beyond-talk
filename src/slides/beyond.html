@@ -3,35 +3,12 @@
   <div class="center" style="font-size: 2em">🔭</div>
 </div>
 <div>
-  <h2 class="our-header">
-    <code>import()</code> 🚀3
-  </h2>
-  <pre><code class="javascript">const module = `./components/${type}.js`;
-const Component = await import(module)
-return &lt;Component>Hello!&lt;/Component></code></pre>
-</div>
-<div>
-  <h2 class="our-header one-line">Private fields/methods/accessors 🚀3</h2>
-  <pre><code class="javascript">class Meh {
-  #w;
-  #h;
-  get #area() { return this.#w * this.#h }
-  #init() {
-    this.#w = 1;
-    this.#h = 1;
-  }
-  constructor() { this.#init() }
-}</code></pre>
-  <p>We reserved the <code>private</code> keyword <a href="https://github.com/tc39/proposal-private-fields/issues/14">for nothing</a>&hellip; 😠</p>
-</div>
-<div>
-  <h2 class="our-header one-line">
-    <code>Array::flatMap</code>/<code>::<s>flatten</s>smoosh</code> 🚀3
-  </h2>
-  <pre><code class="javascript">[1, 2].flatMap(n => [n, n*n]) // [1, 1, 2, 4]
-
-const array = [1, [2, 3], [[4]]]
-array.smoosh()                // [1, 2, 3, [4]]
-array.smoosh(Infinity)        // [1, 2, 3, 4]</code></pre>
-    <p>PSA: it <em>won't</em> be called <code>smoosh</code> for real&hellip;</p>
+  <h2 class="our-header one-line">Proposal stages:</h2>
+  <ul>
+    <li><a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md">Stage 4</a>: reccomendations</li>
+    <li><a href="https://github.com/tc39/proposals#stage-3">Stage 3</a>: candidates</li>
+    <li><a href="https://github.com/tc39/proposals#stage-2">Stage 2</a>: drafts</li>
+    <li><a href="https://github.com/tc39/proposals#stage-1">Stage 1</a>: proposals</li>
+    <li><a href="https://github.com/tc39/proposals/blob/master/stage-0-proposals.md">Stage 0</a>: strawman</li>
+  </ul>
 </div>
