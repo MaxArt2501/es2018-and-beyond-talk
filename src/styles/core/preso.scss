@@ -3,13 +3,16 @@ code {
   border-radius: .25em;
 
   pre > & {
-    box-shadow: 0 0 0 .5em rgba(black, .1);
+    padding: .5em;
   }
   :not(pre) > & {
     display: inline-block;
     padding: .2em .35em;
     line-height: 1;
   }
+}
+pre {
+  margin: .25em 0;
 }
 
 .center {
@@ -22,6 +25,7 @@ code {
 .our-header {
   border-left: $brand-color solid .15em;
   padding: .5em;
+  margin-bottom: .5em;
 }
 
 .slide-container:first-child {
