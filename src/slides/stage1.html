@@ -1,15 +1,14 @@
 <div>
   <h2 class="our-header">Observables 🚀1</h2>
   <p>A-la RxJS <em>5</em>:</p>
-  <pre><code class="javascript">// Don't extend native prototypes, FFS!
-HTMLElement.prototype.on = function(eventName) {
+  <pre><code class="javascript">function fromEvent(el, evName) {
   return new Observable(observer => {
     const handler = event => observer.next(event)
-    this.addEventListener(eventName, handler)
-    return () => this.removeEventListener(eventName, handler)
+    el.addEventListener(evName, handler)
+    return () => el.removeEventListener(evName, handler)
   });
 }
-theInput.on('keydown')
+fromEvent(theInput, 'keydown')
   .filter(({ key }) => key === 'Escape')
   .subscribe(() => theInput.value = '')</code></pre>
 </div>
@@ -21,4 +20,57 @@ const street = address?.street
 
 // Also for optional methods:
 user.resetPassword?.()</code></pre>
+</div>
+<div>
+  <h2 class="our-header"><code>do</code> expressions 🚀1</h2>
+  <p>Basically, a more compact IIFE:</p>
+  <pre><code class="javascript">function Header({ isLogged }) {
+  return &lt;header>{ <em>do</em> {
+    if (isLogged) &lt;LogoutButton />
+    else &lt;LoginButton />
+  }}&lt;/header>
+}</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Partial applications 🚀1</h2>
+  <pre><code class="javascript">const powerOf2 = Math.pow.bind(null, 2)
+const square = n => n ** 2</code></pre>
+  <p>now become:</p>
+  <pre><code class="javascript">const powerOf2 = Math.pow(2, ?)
+const square = Math.pow(?, 2)</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Pipelines 🚀1</h2>
+  <p>Two factions are fighting:</p>
+  <ul>
+    <li>F# pipelines</li>
+    <li>Smart pipelines</li>
+  </ul>
+</div>
+<div>
+  <h2 class="our-header">F# pipelines</h2>
+  <pre><code class="javascript">const coords = await resolveCoords(
+  (await (await fetch(`/api/${entity}`)).json()).user.location
+)</code></pre>
+  <p>now become:</p>
+  <pre><code class="javascript">const coords = `/api/${entity}`
+  |> fetch
+  |> await
+  |> resp => resp.json()
+  |> await
+  |> data => data.user.location
+  |> resolveCoords
+  |> await</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Smart pipelines</h2>
+  <p>F# pipelines + partial applications?</p>
+  <pre><code class="javascript">const coords = `/api/${entity}`
+  |> fetch
+  |> await #
+  |> #.json()
+  |> await #
+  |> #.user.location
+  |> resolveCoords
+  |> await #</code></pre>
 </div>
