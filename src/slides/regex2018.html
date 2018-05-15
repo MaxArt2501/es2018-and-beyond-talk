@@ -17,7 +17,7 @@ console.log(match.groups.protocol)</code></pre>
 <div>
   <h2 class="our-header">Lookbehinds</h2>
   <p>Check if something comes <em>before</em>:</p>
-  <pre><code class="javascript">const re = /(?<\. )[a-z]/g
+  <pre><code class="javascript">const re = /(?<=\. )[a-z]/g
 title = title.replace
     (re, i => i.toUpperCase())</code></pre>
 </div>
