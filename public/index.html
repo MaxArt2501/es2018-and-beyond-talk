@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ES2018 and beyond</title>
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" href="css/big.css">
+  <link rel="stylesheet" href="css/highlight.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="brand">
+  <div>
+  <h1 class="one-line">ES2018 and beyond</h2>
+  <img src="img/mijs.svg" alt="Milano JS Logo">
+  <p class="center">Milan - 2018-05-16</p>
+  <notes>Oh boy!</notes>
+  <notes>Here we go again!</notes>
+</div>
+  <div>
+  <h2 class="our-header">Massimo Artizzu</h2>
+  <h4>
+    <a href="https://github.com/MaxArt2501"><img src="img/github.svg" alt="GitHub logo" class="icon"></a> /
+    <a href="https://twitter.com/MaxArt2501"><img src="img/twitter.svg" alt="Twitter logo" class="icon"></a>
+    @MaxArt2501
+  </h4>
+  <div class="center">
+    <img src="img/logo-antreem.svg" alt="Antreem logo" style="height: 2em;">
+  </div>
+</div>
+  <div>
+  <h2 class="our-header">ES2015 was <em>fantastic</em></h2>
+  <ul class="falling">
+    <li>destructuring</li>
+    <li>generators</li>
+    <li>promises</li>
+    <li>symbols</li>
+    <li>typed arrays</li>
+    <li>spread operator</li>
+    <li>arrow functions</li>
+    <li>default parameters</li>
+    <li>rest parameters</li>
+    <li>template literals</li>
+    <li>tail call optimization</li>
+    <li>computed property names</li>
+    <li>computed accessors</li>
+    <li>shorthand properties</li>
+    <li>shorthand methods</li>
+    <li><code>Map</code>/<code>WeakMap</code></li>
+    <li><code>Set</code>/<code>WeakSet</code></li>
+    <li><code>Array.from</code>/<code>.of</code></li>
+    <li><code>Array::find</code>/<code>::findIndex</code></li>
+    <li><code>String::startsWith</code>/<code>::endsWith</code></li>
+    <li><code>class</code></li>
+    <li><code>Proxy</code></li>
+    <li><code>Reflect</code></li>
+    <li><code>for...of</code></li>
+    <li><code>String::codePointAt</code></li>
+    <li><code>String::includes</code></li>
+    <li><code>Array::includes</code></li>
+    <li><code>Array::fill</code></li>
+    <li><code>Object.assign</code></li>
+    <li><code>Object.is</code></li>
+    <li><code>Number</code> properties</li>
+    <li><code>Math</code> methods</li>
+  </ul>
+</div>
+  <div>
+  <h2 class="our-header">ES2016 was&hellip; <em>meh</em>.</h2>
+  <ul>
+    <li>exponentiation operator (<code>**</code>)</li>
+    <li><code>Array::includes</code></li>
+  </ul>
+</div>
+  <div>
+  <h2 class="our-header">ES2017 had <em>some meat</em> again</h2>
+  <ul>
+    <li><code>async</code>/<code>await</code></li>
+    <li>Shared memory and atomics 👻</li>
+    <li>Trailing commas in parameters</li>
+    <li><code>String::padLeft</code>/<code>::padRight</code></li>
+    <li><code>Object.values</code>/<code>.entries</code></li>
+    <li><code>Object.getOwnPropertyDescriptors</code></li>
+  </ul>
+</div>
+  <div>
+  <h2 class="our-header">And <em>this is</em> ES2018:</h2>
+  <ul>
+    <li>Object spread 🎉</li>
+    <li><code>Promise::finally</code></li>
+    <li><code>for await...of</code></li>
+    <li>Regex lookbehinds</li>
+    <li>Regex Unicode escapes</li>
+    <li>Regex named captures</li>
+    <li>Regex <code>dotAll</code></li>
+    <li>Template literal revision</li>
+  </ul>
+</div>
+  <div>
+  <h3 class="our-header">We already know and ❤️:</h3>
+  <pre><code class="javascript">const settings = {
+  ...defaultSettings,
+  ...userSettings
+}</code></pre>
+  <a class="link babel" href="https://babeljs.io/docs/plugins/transform-object-rest-spread/">transform-object-rest-spread</a>
+</div>
+  <div>
+  <h3 class="our-header">This should be clear:</h3>
+<pre><code class="javascript">someAsyncStuff()
+  .then(dealWithResult)
+  .catch(handleMess)
+  .finally(cleanUp)</code></pre>
+  <a href="https://www.npmjs.com/package/promise.prototype.finally" class="link npm">promise.prototype.finally</a>
+</div>
+<div>
+  <h4 class="one-line our-header">Can't I just use another <code>then</code>?</h4>
+  <div class="center" style="font-size: 2em">🤔</div>
+</div>
+<div>
+  <h2 class="our-header">Nope.</h2>
+  <pre><code class="javascript">someAsyncStuff()
+  .then(dealWithResult)
+  .catch(() => throw 'up')
+  .then(() => console.log('🏁'))</code></pre>
+  <p>It wouldn't log the flag&hellip;</p>
+</div>
+  <div>
+  <h3 class="our-header">
+    <code>for await...of</code><br>
+    or better: <em>asynchronous generators</em>
+  </h3>
+  <pre><code class="javascript">async function* spillButChill() {
+  for (const thing of list)
+    yield thing
+}</code></pre>
+  <a class="link babel" href="https://babeljs.io/docs/plugins/transform-async-generator-functions/">transform-async-generator-functions</a>
+</div>
+<div>
+  <h3 class="our-header">And then it's like</h3>
+  <pre><code class="javascript">const iterable = spillButChill()
+for <em>await</em> (const thing of iterable) {
+  console.log('This thing:', thing)
+}</code></pre>
+</div>
+<div>
+  <p>Iterator's <code>next()</code> method returns a <em><code>Promise</code></em>:</p>
+  <pre><code class="javascript">const iterable = spillButChill()
+const iterator = iterable[Symbol.<em>asyncIterator</em>]
+iterator.next()
+  <em>.then</em>(thing1 => {
+    console.log('First:', thing1)
+    return iterator<em>.next()</em>
+  })
+  .then(thing2 => console.log('More:', thing2))</code></pre>
+</div>
+<div>
+  <h3 class="our-header">A use case w/ Node 10</h3>
+  <pre><code class="javascript">const stream = fs.createReadStream(filepath)
+let size = 0
+for await (const chunk of stream) {
+  size += chunk.length
+}
+console.log('File size:', size)</code></pre>
+</div>
+  <div>
+  <h2 class="our-header">New stuff for regexes!</h2>
+  <h4>I.e.: new ways to make two problems out of one</h4>
+</div>
+<div>
+  <h2 class="our-header"><code>dotAll</code></h2>
+  <pre><code class="javascript">/./.test('\n')  // 👎
+/./s.test('\n') // 👍</code></pre>
+  <a class="link babel" href="https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-dotall-regex">transform-dotall-regex</a>
+</div>
+<div>
+  <h2 class="our-header">Named captures</h2>
+  <pre><code class="javascript">const re = /^(?&lt;protocol>https?):/
+const match = re.exec(url)
+console.log(match.groups.protocol)</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Lookbehinds</h2>
+  <p>Check if something comes <em>before</em>:</p>
+  <pre><code class="javascript">const re = /(?<=\. )[a-z]/g
+title = title.replace
+    (re, i => i.toUpperCase())</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Unicode escapes</h2>
+  <p>Syntax: <code>\p(<em>category_name</em>=<em>set_name</em>)</code></p>
+  <p>Use <code>\P</code> to <em>not</em> include the set.</p>
+  <pre><code class="javascript">const greek = /^\p{Script=Greek}+$/
+console.log(greek.test('μετά')) // 👍</code></pre>
+</div>
+<div>
+  <pre><code class="javascript">const num = /^\p{Decimal_Number}+$/
+console.log(num.test('𝟏𝟜𝟩𝟬𝟼')) // 👍</code></pre>
+  <p>If the category is <code>General_Category</code>, it can be omitted</p>
+</div>
+  <div>
+  <h2 class="our-header one-line">Template Literal Revision</h2>
+  <p>This isn't illegal anymore:</p>
+  <pre><code class="javascript">String.raw`c:\users`</code></pre>
+</div>
+  <div>
+  <h2 class="our-header one-line">So&hellip; what's waiting for us?</h2>
+  <div class="center" style="font-size: 2em">🔭</div>
+</div>
+<div>
+  <h2 class="our-header one-line">Proposal stages:</h2>
+  <ul>
+    <li><a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md">Stage 4</a>: reccomendations</li>
+    <li><a href="https://github.com/tc39/proposals#stage-3">Stage 3</a>: candidates</li>
+    <li><a href="https://github.com/tc39/proposals#stage-2">Stage 2</a>: drafts</li>
+    <li><a href="https://github.com/tc39/proposals#stage-1">Stage 1</a>: proposals</li>
+    <li><a href="https://github.com/tc39/proposals/blob/master/stage-0-proposals.md">Stage 0</a>: strawman</li>
+  </ul>
+</div>
+  <div>
+  <h2 class="our-header">
+    <code>import()</code> 🚀3
+  </h2>
+  <pre><code class="javascript">const module = `./components/${type}.js`;
+const Component = await import(module)
+return &lt;Component>Hello!&lt;/Component></code></pre>
+</div>
+<div>
+  <h2 class="our-header one-line">Private fields/methods/accessors 🚀3</h2>
+  <pre><code class="javascript">class Meh {
+  #w;
+  #h;
+  get #area() { return this.#w * this.#h }
+  #init() {
+    this.#w = 1;
+    this.#h = 1;
+  }
+  constructor() { this.#init() }
+}</code></pre>
+  <p>We reserved the <code>private</code> keyword <a href="https://github.com/tc39/proposal-private-fields/issues/14">for nothing</a>&hellip; 😠</p>
+</div>
+<div>
+  <h2 class="our-header one-line">
+    <code>Array::flatMap</code>/<code>::<s>flatten</s>smoosh</code> 🚀3
+  </h2>
+  <pre><code class="javascript">[1, 2].flatMap(n => [n, n*n]) // [1, 1, 2, 4]
+
+const array = [1, [2, 3], [[4]]]
+array.smoosh()                // [1, 2, 3, [4]]
+array.smoosh(Infinity)        // [1, 2, 3, 4]</code></pre>
+    <p>PSA: it <em>won't</em> be called <code>smoosh</code> for real&hellip;</p>
+</div>
+  <div>
+  <h2 class="our-header one-line">Static class fields/methods 🚀2</h2>
+  <pre><code class="javascript">class Covfefe extends React.Component {
+  static defaultProps = { wtf: 9001 }
+  static getRandom(max = 10000) {
+    const wtf = Math.floor(Math.random(max))
+    return &lt;Covfefe wtf={wtf}/>
+  }
+}</code></pre>
+</div>
+<div>
+  <h2 class="our-header one-line">Decorators 🚀2</h2>
+  <pre><code class="javascript">@defineElement('date-picker')
+class DatePicker extends HTMLElement {
+  @readonly
+  today = new Date();
+
+  @bound
+  clickHandler() {
+    // ...
+  }
+}</code></pre>
+</div>
+<div>
+  <h3>Decorators are <em>functions</em></h3>
+  <pre><code class="javascript">function bound(methodDescriptor) {
+  return {
+    ...methodDescriptor,
+    extras: [{ /* bound method descriptor */ }]
+  }
+}</code></pre>
+<a class="link babel" href="https://babeljs.io/docs/plugins/transform-decorators/">transform-decorators</a>
+</div>
+  <div>
+  <h2 class="our-header">Observables 🚀1</h2>
+  <p>A-la RxJS <em>5</em>:</p>
+  <pre><code class="javascript">function fromEvent(el, evName) {
+  return new Observable(observer => {
+    const handler = event => observer.next(event)
+    el.addEventListener(evName, handler)
+    return () => el.removeEventListener(evName, handler)
+  });
+}
+fromEvent(theInput, 'keydown')
+  .filter(({ key }) => key === 'Escape')
+  .subscribe(() => theInput.value = '')</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Optional chaining 🚀1</h2>
+  <pre><code class="javascript">const street = address ? address.street : undefined
+// becomes...
+const street = address?.street
+
+// Also for optional methods:
+user.resetPassword?.()</code></pre>
+</div>
+<div>
+  <h2 class="our-header"><code>do</code> expressions 🚀1</h2>
+  <p>Basically, a more compact IIFE:</p>
+  <pre><code class="javascript">function Header({ isLogged }) {
+  return &lt;header>{ <em>do</em> {
+    if (isLogged) &lt;LogoutButton />
+    else &lt;LoginButton />
+  }}&lt;/header>
+}</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Partial applications 🚀1</h2>
+  <pre><code class="javascript">const powerOf2 = Math.pow.bind(null, 2)
+const square = n => n ** 2</code></pre>
+  <p>now become:</p>
+  <pre><code class="javascript">const powerOf2 = Math.pow(2, ?)
+const square = Math.pow(?, 2)</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Pipelines 🚀1</h2>
+  <p>Two factions are fighting:</p>
+  <ul>
+    <li>F# pipelines</li>
+    <li>Smart pipelines</li>
+  </ul>
+</div>
+<div>
+  <h2 class="our-header">F# pipelines</h2>
+  <pre><code class="javascript">const coords = await resolveCoords(
+  (await (await fetch(`/api/${entity}`)).json()).user.location
+)</code></pre>
+  <p>now become:</p>
+  <pre><code class="javascript">const coords = `/api/${entity}`
+  |> fetch
+  |> await
+  |> resp => resp.json()
+  |> await
+  |> data => data.user.location
+  |> resolveCoords
+  |> await</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Smart pipelines</h2>
+  <p>F# pipelines + partial applications?</p>
+  <pre><code class="javascript">const coords = `/api/${entity}`
+  |> fetch
+  |> await #
+  |> #.json()
+  |> await #
+  |> #.user.location
+  |> resolveCoords
+  |> await #</code></pre>
+</div>
+  <div>
+  <h1>That's all, folks!</h1>
+  <div class="center">
+    <a href="https://github.com/MaxArt2501/es2018-and-beyond-talk">
+      github.com/MaxArt2501/es2018-and-beyond-talk
+    </a>
+  </div>
+</div>
+  <script src="js/big.js"></script>
+  <script src="js/highlight.js"></script>
+
+  <script src="js/index.js" type="module"></script>
+</body>
+</html>
