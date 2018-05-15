@@ -1,0 +1,122 @@
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 100;
+  src: local("Raleway Thin Italic"), local("Raleway-ThinItalic"), url(../fonts/raleway-thin-italic.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 400;
+  src: local("Raleway Italic"), local("Raleway-Italic"), url(../fonts/raleway-italic.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 700;
+  src: local("Raleway Bold Italic"), local("Raleway-BoldItalic"), url(../fonts/raleway-bold-italic.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 100;
+  src: local("Raleway Thin"), local("Raleway-Thin"), url(../fonts/raleway-thin.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Raleway"), local("Raleway-Regular"), url(../fonts/raleway-regular.ttf) format("truetype"); }
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Raleway Bold"), local("Raleway-Bold"), url(../fonts/raleway-bold.ttf) format("truetype"); }
+
+body {
+  font-family: Raleway, sans-serif; }
+
+ul.falling {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 5vmin; }
+  ul.falling > li {
+    position: fixed;
+    top: 0;
+    left: 0;
+    animation: falling 3s infinite forwards ease-in;
+    transform: translate3d(-50%, -100%, 0);
+    background: rgba(0, 0, 0, 0.1);
+    padding: .25em 1em;
+    border-radius: 2em; }
+  ul.falling code {
+    background: none; }
+
+@keyframes falling {
+  from {
+    transform: translate3d(-50%, -100%, 0); }
+  to {
+    transform: translate3d(-50%, 100vh, 0); } }
+
+code {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: .25em; }
+  pre > code {
+    padding: .5em; }
+  :not(pre) > code {
+    display: inline-block;
+    padding: .2em .35em;
+    line-height: 1; }
+
+pre {
+  margin: .25em 0; }
+
+.center {
+  text-align: center; }
+
+.one-line {
+  white-space: nowrap; }
+
+.our-header {
+  border-left: #f60 solid 0.15em;
+  padding: .5em;
+  margin-bottom: .5em; }
+
+.slide-container:first-child {
+  background: #f60;
+  outline: 50vmin solid #f60;
+  color: white;
+  position: relative; }
+  .slide-container:first-child::before {
+    content: "";
+    position: absolute;
+    top: -15%;
+    right: 0;
+    bottom: -15%;
+    left: 0;
+    background: url("../img/logo-antreem-contour.svg") center/contain no-repeat; }
+  .slide-container:first-child img {
+    width: 25%;
+    display: block;
+    margin: 2rem auto; }
+
+.link {
+  display: block;
+  padding: .25em .5em .25em 3.5em;
+  background: .5em center/2.5em no-repeat;
+  text-decoration: none; }
+  .link.babel {
+    background-color: #f5da55;
+    background-image: url(../img/babel.svg);
+    border-radius: .5em; }
+  .link.npm {
+    background-image: url(../img/npm.svg); }
+
+.icon {
+  height: 1.25em;
+  width: 1.25em;
+  vertical-align: middle; }
+
+/*# sourceMappingURL=main.css.map */
