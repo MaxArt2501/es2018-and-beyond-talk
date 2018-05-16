@@ -9,23 +9,19 @@
 }</code></pre>
   <a class="link babel" href="https://babeljs.io/docs/plugins/transform-async-generator-functions/">transform-async-generator-functions</a>
 </div>
-<div>
+<!--div>
   <h3 class="our-header">And then it's like</h3>
   <pre><code class="javascript">const iterable = spillButChill()
 for <em>await</em> (const thing of iterable) {
   console.log('This thing:', thing)
 }</code></pre>
-</div>
+</div-->
 <div>
   <p>Iterator's <code>next()</code> method returns a <em><code>Promise</code></em>:</p>
   <pre><code class="javascript">const iterable = spillButChill()
 const iterator = iterable[Symbol.<em>asyncIterator</em>]
 iterator.next()
-  <em>.then</em>(thing1 => {
-    console.log('First:', thing1)
-    return iterator<em>.next()</em>
-  })
-  .then(thing2 => console.log('More:', thing2))</code></pre>
+  <em>.then</em>(thing => { /*...*/ })</code></pre>
 </div>
 <div>
   <h3 class="our-header">A use case w/ Node 10</h3>
