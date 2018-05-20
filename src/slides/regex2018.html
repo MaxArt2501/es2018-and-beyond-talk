@@ -10,26 +10,26 @@
 </div>
 <div>
   <h2 class="our-header">Named captures</h2>
-  <pre><code class="javascript">const re = /^(?&lt;protocol>https?):/
+  <pre><code class="javascript">const re = /^(?<em>&lt;protocol></em>https?):/
 const match = re.exec(url)
-console.log(match.groups.protocol)</code></pre>
+console.log(<em>match.groups.protocol</em>)</code></pre>
 </div>
 <div>
   <h2 class="our-header">Lookbehinds</h2>
   <p>Check if something comes <em>before</em>:</p>
-  <pre><code class="javascript">const re = /(?<=\. )[a-z]/g
+  <pre><code class="javascript">const re = /(<em>?&lt;=</em>\. )[a-z]/g
 title = title.replace
     (re, i => i.toUpperCase())</code></pre>
 </div>
 <div>
   <h2 class="our-header">Unicode escapes</h2>
-  <p>Syntax: <code>\p(<em>category_name</em>=<em>set_name</em>)</code></p>
+  <p>Syntax: <code>\p{<em>category_name</em>=<em>set_name</em>}</code></p>
   <p>Use <code>\P</code> to <em>not</em> include the set.</p>
-  <pre><code class="javascript">const greek = /^\p{Script=Greek}+$/
+  <pre><code class="javascript">const greek = /^\p{<em>Script</em>=<em>Greek</em>}+$/
 console.log(greek.test('μετά')) // 👍</code></pre>
 </div>
-<div>
+<!--div>
   <pre><code class="javascript">const num = /^\p{Decimal_Number}+$/
 console.log(num.test('𝟏𝟜𝟩𝟬𝟼')) // 👍</code></pre>
-  <p>If the category is <code>General_Category</code>, it can be omitted</p>
-</div>
+  <p>If the category is <code>General_Category</code>, it can be omitted.</p>
+</div-->
