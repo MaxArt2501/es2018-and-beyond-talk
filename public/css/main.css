@@ -60,12 +60,17 @@ ul.falling {
   to {
     transform: translate3d(-50%, 100vh, 0); } }
 
-code {
+body.talk-mode {
+  overflow: hidden; }
+
+code.hljs {
   background: rgba(0, 0, 0, 0.1);
   border-radius: .25em; }
-  pre > code {
+  code.hljs > em > [class^=hljs-] {
+    color: inherit; }
+  pre > code.hljs {
     padding: .5em; }
-  :not(pre) > code {
+  :not(pre) > code.hljs {
     display: inline-block;
     padding: .2em .35em;
     line-height: 1; }
@@ -97,10 +102,15 @@ pre {
     bottom: -15%;
     left: 0;
     background: url("../img/logo-antreem-contour.svg") center/contain no-repeat; }
+  .slide-container:first-child > div {
+    position: relative; }
   .slide-container:first-child img {
     width: 25%;
     display: block;
     margin: 2rem auto; }
+  .slide-container:first-child a {
+    color: #fe6;
+    text-shadow: 0 0 0.1em #f60; }
 
 .link {
   display: block;
@@ -118,5 +128,8 @@ pre {
   height: 1.25em;
   width: 1.25em;
   vertical-align: middle; }
+
+li > h4 {
+  margin: 1em 0 0; }
 
 /*# sourceMappingURL=main.css.map */
