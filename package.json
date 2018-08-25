@@ -6,7 +6,6 @@
   "devDependencies": {
     "concurrently": "^3.5.1",
     "gulp": "^3.9.1",
-    "gulp-replace": "^0.6.1",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-tap": "^1.0.1",
