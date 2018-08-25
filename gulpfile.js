@@ -1,7 +1,7 @@
-const { readFileSync, writeFileSync, existsSync, mkdirSync } = require('fs');
+const { readFileSync } = require('fs');
 const gulp = require('gulp');
 const sass = require('gulp-sass');
-const replace = require('gulp-replace');
+const tap = require('gulp-tap');
 const sourcemaps = require('gulp-sourcemaps');
 const rimraf = require('rimraf');
 
@@ -10,21 +10,25 @@ const task = gulp.task.bind(gulp);
 const watch = gulp.watch.bind(gulp);
 
 task('slides', () => {
-  const html = readFileSync('src/index.html', 'utf8');
-  const parsed = html.replace(
-    /\bslide:(.+?)\s/g,
-    (m, source) => {
-      try {
-        const slide = readFileSync(`src/slides/${source}.html`, 'utf-8');
-        return slide;
-      } catch (e) {
-        console.error(`Slide not found: ${source}`);
-        return m;
-      }
-    }
-  );
-  if (!existsSync('public')) mkdirSync('public');
-  writeFileSync('public/index.html', parsed);
+  src('src/presentations/**/*.html')
+    .pipe(tap(file => {
+      // console.log(file.relative, file.path, file.cwd, file.base, file.history, file.stat)
+      const html = file.contents.toString();
+      const parsed = html.replace(
+        /\bslide:(.+?)\s/g,
+        (m, source) => {
+          try {
+            const slide = readFileSync(`src/slides/${source}.html`, 'utf-8');
+            return slide;
+          } catch (e) {
+            console.error(`Slide not found: ${source}`);
+            return m;
+          }
+        }
+      );
+      file.contents = Buffer.from(parsed);
+    }))
+    .pipe(dest('public'));
 });
 
 task('css', () => {
