@@ -1,0 +1,16 @@
+<div>
+  <h3 class="our-header">Basically the same:</h3>
+  <pre><code class="javascript">const opts1 = {
+  ...defaults,
+  async: true
+};
+const opts2 = Object.assign(
+  {},
+  defaults,
+  { async: true }
+);</code></pre>
+  <p>
+    Main difference: spread <em>defines</em> new properties, <code>Object.assign</code> <em>calls the setters</em> to set the values. (See:
+    <a href="http://2ality.com/2016/10/rest-spread-properties.html#spread-defines-properties-objectassign-sets-them">2ality</a>)
+  </p>
+</div>

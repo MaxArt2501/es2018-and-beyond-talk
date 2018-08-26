@@ -93,3 +93,36 @@ pre {
 li > h4 {
   margin: 1em 0 0;
 }
+
+.support {
+  background-color: lightskyblue;
+  padding: 0 .25em .25em;
+  border-radius: 0 0 .25em .25em;
+  margin: 0 auto;
+
+  > caption {
+    background-color: lightskyblue;
+    border-radius: .333em .333em 0 0;
+    padding: .333em;
+    font-size: 75%;
+  }
+
+  th > img {
+    height: .75em;
+  }
+
+  td {
+    background-color: white;
+    padding: .1em;
+    min-width: 2em;
+    text-align: center;
+  }
+  .ok {
+    background-color: green;
+    color: white;
+  }
+  .ko {
+    background-color: red;
+    color: white;
+  }
+}
