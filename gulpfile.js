@@ -9,23 +9,68 @@ const { src, dest } = gulp;
 const task = gulp.task.bind(gulp);
 const watch = gulp.watch.bind(gulp);
 
+const environments = {
+  chrome: 'Chrome',
+  firefox: 'Firefox',
+  safari: 'Safari',
+  edge: 'Edge',
+  samsung: 'Samsung Internet',
+  node: 'Node.js'
+};
+
 task('slides', () => {
   src('src/presentations/**/*.html')
     .pipe(tap(file => {
-      // console.log(file.relative, file.path, file.cwd, file.base, file.history, file.stat)
       const html = file.contents.toString();
-      const parsed = html.replace(
-        /\bslide:(.+?)\s/g,
-        (m, source) => {
-          try {
-            const slide = readFileSync(`src/slides/${source}.html`, 'utf-8');
-            return slide;
-          } catch (e) {
-            console.error(`Slide not found: ${source}`);
-            return m;
+      const parsed = html
+        .replace(
+          /\bslide:(.+?)\s/g,
+          (m, source) => {
+            try {
+              const slide = readFileSync(`src/slides/${source}.html`, 'utf-8');
+              return slide;
+            } catch (e) {
+              console.error(`Slide not found: ${source}`);
+              return m;
+            }
           }
-        }
-      );
+        ).replace(
+          /([ \t]*)<script support>\((.*?)\)<\/script>/gs,
+          (m, indent, json) => {
+            try {
+              const data = JSON.parse(json);
+              const caption = data.caption
+                ? [ `  <caption>${data.caption}</caption>` ]
+                : [];
+              const headers = [];
+              const envs = [];
+              for (const [ env, version ] of Object.entries(data.support)) {
+                if (!(env in environments)) continue;
+                headers.push(`      <th><img src="img/${env}.svg" alt="${environments[env]} logo"></th>`);
+                const supClass = version ? ' class="ok"' : (version === false ? ' class="ko"' : '');
+                envs.push(`      <td${supClass}>${version || ''}</td>`);
+              }
+              return [
+                '<table class="support">',
+                ...caption,
+                '  <thead>',
+                '    <tr>',
+                ...headers,
+                '    </tr>',
+                '  </thead>',
+                '  <tbody>',
+                '    <tr>',
+                ...envs,
+                '    </tr>',
+                '  </tbody>',
+                '</table>'
+              ].map(line => indent + line).join('\n');
+            } catch (error) {
+              console.error('Cannot build support table', error.message);
+              return m;
+            }
+          }
+        );
       file.contents = Buffer.from(parsed);
     }))
     .pipe(dest('public'));
