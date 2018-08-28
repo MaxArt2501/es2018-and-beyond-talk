@@ -1,0 +1,78 @@
+<div>
+  <h2 class="our-header">New stuff for regexes!</h2>
+  <h4>I.e.: new ways to make two problems out of one</h4>
+</div>
+<div>
+  <h2 class="our-header"><code>dotAll</code></h2>
+  <pre><code class="javascript">/./.test('\n')  // 👎
+/./s.test('\n') // 👍</code></pre>
+  <a class="link babel" href="https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-dotall-regex">transform-dotall-regex</a>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <script support>({
+    "caption": "Regex \"dotAll\" flag",
+    "support": {
+      "chrome": 62,
+      "firefox": false,
+      "safari": 11.1,
+      "edge": false,
+      "samsung": false,
+      "node": "8.10"
+    }
+  })</script>
+</div>
+<div>
+  <h2 class="our-header">Named captures</h2>
+  <pre><code class="javascript">const re = /^(?<em>&lt;protocol></em>https?):/
+const match = re.exec(url)
+const { protocol } = match.groups</code></pre>
+    <p>Also accessible with <code>match[1]</code></p>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <script support>({
+    "caption": "Regex named captures",
+    "support": {
+      "chrome": 64,
+      "firefox": false,
+      "safari": 11.1,
+      "edge": false,
+      "samsung": false,
+      "node": 10
+    }
+  })</script>
+</div>
+<div>
+  <h2 class="our-header">Lookbehinds</h2>
+  <p>Check if something comes <em>before</em>:</p>
+  <pre><code class="javascript">const re = /(<em>?&lt;=</em>\. )[a-z]/g
+title = title.replace
+    (re, i => i.toUpperCase())</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <script support>({
+    "caption": "Regex lookbehinds",
+    "support": {
+      "chrome": 62,
+      "firefox": false,
+      "safari": false,
+      "edge": false,
+      "samsung": false,
+      "node": "8.10"
+    }
+  })</script>
+</div>
+<div>
+  <h2 class="our-header">Unicode escapes</h2>
+  <p>Syntax: <code>\p{<em>category_name</em>=<em>set_name</em>}</code></p>
+  <p>Use <code>\P</code> to <em>not</em> include the set.</p>
+  <pre><code class="javascript">const greek = /^\p{<em>Script</em>=<em>Greek</em>}+$/
+console.log(greek.test('μετά')) // 👍</code></pre>
+</div>
+<div>
+  <pre><code class="javascript">const num = /^\p{Decimal_Number}+$/
+console.log(num.test('𝟏𝟜𝟩𝟬𝟼')) // 👍</code></pre>
+  <p>If the category is <code>General_Category</code>, it can be omitted.</p>
+</div>

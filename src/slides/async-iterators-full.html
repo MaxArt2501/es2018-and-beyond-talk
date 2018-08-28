@@ -1,0 +1,53 @@
+<div>
+  <h3 class="our-header">
+    <code>for await...of</code><br>
+    or better: <em>asynchronous generators</em>
+  </h3>
+  <pre><code class="javascript">async function* spillButChill() {
+  for (const thing of list)
+    yield thing
+}</code></pre>
+  <a class="link babel" href="https://babeljs.io/docs/plugins/transform-async-generator-functions/">transform-async-generator-functions</a>
+</div>
+<div>
+  <h3 class="our-header">And then it's like</h3>
+  <pre><code class="javascript">const iterable = spillButChill()
+for <em>await</em> (const thing of iterable) {
+  console.log('This thing:', thing)
+}</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Under the hood</h3>
+  <p>Iterator's <code>next()</code> method returns a <em><code>Promise</code></em>:</p>
+  <pre><code class="javascript">const iterable = spillButChill()
+const iterator = iterable[Symbol.<em>asyncIterator</em>]
+iterator.next()
+  <em>.then</em>(thing => {
+    // ...
+    return iterator.next()
+  })
+  <em>.then</em>(...)</code></pre>
+</div>
+<div>
+  <h3 class="our-header">A use case w/ Node 10</h3>
+  <pre><code class="javascript">const stream = fs.createReadStream(filepath)
+let size = 0
+for await (const chunk of stream) {
+  size += chunk.length
+}
+console.log('File size:', size)</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <script support>({
+    "caption": "Async iterators",
+    "support": {
+      "chrome": 63,
+      "firefox": 57,
+      "safari": "12*",
+      "edge": false,
+      "samsung": false,
+      "node": 10
+    }
+  })</script>
+</div>
