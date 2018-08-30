@@ -76,3 +76,26 @@ console.log(greek.test('μετά')) // 👍</code></pre>
 console.log(num.test('𝟏𝟜𝟩𝟬𝟼')) // 👍</code></pre>
   <p>If the category is <code>General_Category</code>, it can be omitted.</p>
 </div>
+<div>
+  <h2 class="our-header">We can match <em>emojis</em>! 🎉</h2>
+  <pre><code class="javascript">const emoji = /\p{<em>Emoji_Presentation</em>}
+  |\p{<em>Emoji_Modifier_Base</em>}\p{<em>Emoji_Modifier</em>}?
+  |\p{<em>Emoji</em>}\ufe0f/u
+console.log(emoji.test('🎉')) // 👍
+console.log(emoji.test('👍🏼')) // 👍
+console.log(emoji.test('↔️')) // 👍</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <script support>({
+    "caption": "Regex Unicode escapes",
+    "support": {
+      "chrome": 64,
+      "firefox": false,
+      "safari": "11.1",
+      "edge": false,
+      "samsung": false,
+      "node": 10
+    }
+  })</script>
+</div>
