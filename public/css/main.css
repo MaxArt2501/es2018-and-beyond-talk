@@ -89,28 +89,32 @@ pre {
   padding: .5em;
   margin-bottom: .5em; }
 
-.slide-container:first-child {
-  background: #f60;
-  outline: 50vmin solid #f60;
-  color: white;
-  position: relative; }
-  .slide-container:first-child::before {
-    content: "";
-    position: absolute;
-    top: -15%;
-    right: 0;
-    bottom: -15%;
-    left: 0;
-    background: url("../img/logo-antreem-contour.svg") center/contain no-repeat; }
-  .slide-container:first-child > div {
+.slide-container {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; }
+  .slide-container:first-child {
+    background: #f60;
+    outline: 50vmin solid #f60;
+    color: white;
     position: relative; }
-  .slide-container:first-child img {
-    width: 25%;
-    display: block;
-    margin: 2rem auto; }
-  .slide-container:first-child a {
-    color: #fe6;
-    text-shadow: 0 0 0.1em #f60; }
+    .slide-container:first-child::before {
+      content: "";
+      position: absolute;
+      top: -15%;
+      right: 0;
+      bottom: -15%;
+      left: 0;
+      background: url("../img/logo-antreem-contour.svg") center/contain no-repeat; }
+    .slide-container:first-child > div {
+      position: relative; }
+    .slide-container:first-child img {
+      width: 25%;
+      display: block;
+      margin: 2rem auto; }
+    .slide-container:first-child a {
+      color: #fe6;
+      text-shadow: 0 0 0.1em #f60; }
 
 .link {
   display: block;

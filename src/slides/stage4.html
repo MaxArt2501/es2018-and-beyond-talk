@@ -1,9 +1,54 @@
 <div>
-  <h2>Optional <code>catch</code> binding</h2>
-  <pre><code>try {
+  <h2 class="our-header">Optional <code>catch</code> binding 🚀4</h2>
+  <pre><code class="javascript">try {
   potentiallyDeadlyThing()
 } catch {
   console.info('¯\_(ツ)_/¯')
+}</code></pre>
+</div>
+<div data-background-image="img/butwhy.webp"></div>
+<div>
+  <h4 class="our-header">Use case: <em>feature detection</em></h4>
+  <pre><code class="javascript">let unicodeSupport
+try {
+  new RegExp('.', 'u')
+  unicodeSupport = true
+} catch {
+  unicodeSupport = false
+}</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: <em>possible format errors</em></h4>
+  <pre><code class="javascript">let data
+try {
+  data = JSON.parse(rawString)
+} catch {
+  data = {}
+}</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: <em>easy property fallback</em></h4>
+  <pre><code class="javascript">let itemId
+try {
+  itemId = group.reference.item.id
+} catch {
+  itemId = null
+}</code></pre>
+  <p>P.S.: there's another proposal for this case&hellip;</p>
+</div>
+<div>
+  <h4 class="our-header">Use case: <em>even logging can fail</em></h4>
+  <pre><code class="javascript">try {
+  loggerService.log('😱')
+} catch { /* 😭 */ }</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: <em>I'm just horrible&hellip;</em></h4>
+  <pre><code class="javascript">try {
+  backendService.saveVitalInfo(payload)
+} catch {
+  console.error(`Pay me
+    if you want error management!`)
 }</code></pre>
 </div>
 <div>

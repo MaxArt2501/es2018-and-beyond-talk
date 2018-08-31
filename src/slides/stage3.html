@@ -23,12 +23,12 @@ return &lt;Component>Hello!&lt;/Component></code></pre>
 </div>
 <div>
   <h2 class="our-header one-line">
-    <code>Array::flatMap</code>/<code>::<s>flatten</s>smoosh</code> 🚀3
+    <code>Array::flatMap</code><br>
+    <code>Array::<s>flatten</s> <s>smoosh</s> flat</code> 🚀3
   </h2>
   <pre><code class="javascript">[1, 2].flatMap(n => [n, n*n]) // [1, 1, 2, 4]
 
 const array = [1, [2, 3], [[4]]]
-array.smoosh()                // [1, 2, 3, [4]]
-array.smoosh(Infinity)        // [1, 2, 3, 4]</code></pre>
-    <p>PSA: it <em>won't</em> be called <code>smoosh</code> for real&hellip;</p>
+array.flat()                // [1, 2, 3, [4]]
+array.flat(Infinity)        // [1, 2, 3, 4]</code></pre>
 </div>
