@@ -1,0 +1,122 @@
+<div>
+  <h2 class="our-header">
+    <code>import()</code> 🚀3
+  </h2>
+  <pre><code class="javascript">const module = `./components/${type}.js`;
+const Component = await import(module)
+return &lt;Component>Hello!&lt;/Component></code></pre>
+  <a class="link babel" href="https://babeljs.io/docs/plugins/syntax-dynamic-import/">syntax-dynamic-import</a>
+</div>
+<div>
+  <h3>Way ahead of you!</h3>
+  <ul>
+    <li>It soon <em>replaced</em> <code>require.ensure</code> in webpack.</li>
+    <li>
+      Remember you can <em>code-split</em> and <em>lazy-load</em>,
+      but <em>not tree-shake</em> with <code>import()</code>!
+    </li>
+  </ul>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <script support>({
+    "caption": "Dynamic import",
+    "support": {
+      "chrome": 63,
+      "firefox": false,
+      "safari": 11.1,
+      "edge": false,
+      "samsung": false,
+      "node": false
+    }
+  })</script>
+</div>
+<div>
+  <h2 class="our-header one-line">Private fields/methods/accessors 🚀3</h2>
+  <pre><code class="javascript">class Meh {
+  <em>#</em>width;
+  <em>#</em>height;
+  get <em>#</em>area() { return this.<em>#</em>width * this.<em>#</em>height }
+  <em>#</em>init() {
+    this.<em>#</em>width = 1;
+    this.<em>#</em>height = 1;
+  }
+  constructor() { this.<em>#</em>init() }
+}</code></pre>
+</div>
+<div>
+  <h2 class="our-header one-line">Why not <em><code>private</code></em>?! 😠</h2>
+  <ul>
+    <li>Has been reserved for decades;</li>
+    <li>OOP developers wouldn't feel lost;</li>
+    <li>already used in TypeScript.</li>
+  </ul>
+</div>
+<div>
+  <h2 class="our-header one-line">
+    PSA: those are <em>not</em> properties!<br>
+    <small>They're <em>fields</em>.</small>
+  </h2>
+  <pre><code class="javascript">class Foo {
+  private name
+  constructor(name) {
+    this.name = name
+  }
+  copyFrom(source) {
+    this.name = source.name
+  }
+}</code></pre>
+  <p>Property resolution would be more complicated.</p>
+  <p>If you have time, read <a href="https://github.com/tc39/proposal-private-fields/issues/14">here</a>.</p>
+</div>
+<div>
+  <h3 class="our-header">What about TypeScript?</h3>
+  <p>
+    It will keep things separate: TypeScript's <code>private</code>
+    (and visibility modifiers in general) works for static analysis.
+    (See <a href="https://github.com/Microsoft/TypeScript/issues/16324">here</a>.)
+  </p>
+  <pre><code class="javascript">class Hello {
+  #bar         // 'hard' privacy
+  private foo  // 'soft' privacy
+}</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Use cases</h3>
+  <p>The same of TypeScript's <code>private</code>.</p>
+  <h4>But.</h4>
+  <p>Reminder: <em>soft</em> privacy is easier to debug and allows better tools.</p>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <script support>({
+    "caption": "Class fields",
+    "support": {
+      "chrome": false,
+      "firefox": false,
+      "safari": false,
+      "edge": false,
+      "samsung": false,
+      "node": false
+    }
+  })</script>
+</div>
+<div>
+  <h2 class="our-header one-line">
+    <code>Array::flatMap</code><br>
+    <code>Array::<s>flatten</s> <s>smoosh</s> flat</code> 🚀3
+  </h2>
+  <notes>We can also return single items with flatMap (just like jQuery's map)</notes>
+  <pre><code class="javascript">[1, 2].flatMap(n => [n, n*n]) // [1, 1, 2, 4]
+
+const array = [1, [2, 3], [[4]]]
+array.flat()                // [1, 2, 3, [4]]
+array.flat(Infinity)        // [1, 2, 3, 4]</code></pre>
+</div>
+<div>
+  <h3 class="our-header one-line">Sooo&hellip; why not <em><code>flatten</code></em> again? 🤔</h3>
+  <div class="center">
+    <iframe style="width: 16em; height: 9em" src="https://www.youtube.com/embed/loqVnZywmvw?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <p>TL; DW: it's MooTools. <a href="https://github.com/mootools/mootools-core/issues/2402">Again</a>.</p>
+  </div>
+</div>

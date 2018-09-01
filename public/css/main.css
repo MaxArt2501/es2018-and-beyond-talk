@@ -163,5 +163,7 @@ li > h4 {
     background-size: 100px 100px,100px 100px;
     background-position: 50% 50%,50% 50%;
     background-repeat: no-repeat; }
+    .support .ko::before {
+      content: "\a0"; }
 
 /*# sourceMappingURL=main.css.map */
