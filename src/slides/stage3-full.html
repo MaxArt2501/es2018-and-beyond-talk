@@ -72,13 +72,12 @@ return &lt;Component>Hello!&lt;/Component></code></pre>
 <div>
   <h3 class="our-header">What about TypeScript?</h3>
   <p>
-    It will keep things separate: TypeScript's <code>private</code>
-    (and visibility modifiers in general) works for static analysis.
-    (See <a href="https://github.com/Microsoft/TypeScript/issues/16324">here</a>.)
+    It <a href="https://github.com/Microsoft/TypeScript/issues/16324">will not</a>
+    transpile <em><code>private</code></em> to <em>#</em>.
   </p>
   <pre><code class="javascript">class Hello {
-  #bar         // 'hard' privacy
-  private foo  // 'soft' privacy
+  <em>#</em>bar         // 'hard' privacy
+  <em>private</em> foo  // 'soft' privacy
 }</code></pre>
 </div>
 <div>
@@ -92,12 +91,12 @@ return &lt;Component>Hello!&lt;/Component></code></pre>
   <script support>({
     "caption": "Class fields",
     "support": {
-      "chrome": false,
+      "chrome": "🏴",
       "firefox": false,
       "safari": false,
       "edge": false,
       "samsung": false,
-      "node": false
+      "node": "🏴"
     }
   })</script>
 </div>
@@ -116,7 +115,51 @@ array.flat(Infinity)        // [1, 2, 3, 4]</code></pre>
 <div>
   <h3 class="our-header one-line">Sooo&hellip; why not <em><code>flatten</code></em> again? 🤔</h3>
   <div class="center">
-    <iframe style="width: 16em; height: 9em" src="https://www.youtube.com/embed/loqVnZywmvw?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <!-- <iframe style="width: 16em; height: 9em" src="https://www.youtube.com/embed/loqVnZywmvw?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
     <p>TL; DW: it's MooTools. <a href="https://github.com/mootools/mootools-core/issues/2402">Again</a>.</p>
   </div>
+</div>
+<div>
+  <h4 class="our-header">Use case: <code>flat</code></h4>
+  <p>Because this is awkward and unclear:</p>
+  <pre><code class="javascript">const list = [[1], [2, 3], [4]]
+const flattened = [].<em>concat.apply</em>([], list)</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: multiple item mapping</h4>
+  <pre><code class="javascript">function DescList({ items }) {
+  return &lt;dl>{
+    items.flatMap(({ term, desc }) => [
+      &lt;dt>{ term }&lt;/dt>,
+      &lt;dd>{ desc }&lt;/dd>
+    ])
+  }&lt;/dl>
+}</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: filtering and mapping</h4>
+  <pre><code class="javascript">list.filter(...).map(...)</code></pre>
+  <p>Return an empty array for filtered elements:</p>
+  <pre><code class="javascript">list.flatMap(item => {
+  if (item.deleted) return []
+  return item.id
+})</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Trivia</h4>
+  <p>jQuery's <code>map</code> is just like <code>flatMap</code>.</p>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <script support>({
+    "caption": "<code>Array::flat</code>/<code>::flatMap</code>",
+    "support": {
+      "chrome": "69*",
+      "firefox": "62*",
+      "safari": "12*",
+      "edge": false,
+      "samsung": false,
+      "node": false
+    }
+  })</script>
 </div>

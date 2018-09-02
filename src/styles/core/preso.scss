@@ -22,6 +22,11 @@ code.hljs {
 pre {
   margin: .25em 0;
 }
+h1, h2, h3, h4 {
+  &:first-child {
+    margin-top: 0;
+  }
+}
 
 .center {
   text-align: center;
