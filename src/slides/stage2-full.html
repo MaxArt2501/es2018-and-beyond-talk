@@ -1,0 +1,45 @@
+<div>
+  <h2 class="our-header one-line">Static class fields/methods 🚀2</h2>
+  <pre><code class="javascript">class Covfefe {
+  static foo = { wtf: 9001 }
+  static getRandom(max = 10000) {
+    return Math.floor(Math.random(max))
+  }
+}</code></pre>
+<a class="link babel" href="https://babeljs.io/docs/plugins/transform-class-properties/">transform-class-properties</a>
+</div>
+<div>
+  <h3 class="our-header one-line">Use case: React's <code>propTypes</code> and <code>defaultProps</code></h3>
+  <pre><code class="javascript">class SimpleList extends React.Component {
+  static propTypes = PropTypes.arrayOf(PropTypes.string)
+  static defaultProps = { items: [] }
+  render() {
+    return &lt;ul>
+      { this.items.map(item => &lt;li>{ item }&lt;/li>) }
+    &lt;/ul>
+  }
+}</code></pre>
+</div>
+<div>
+  <h2 class="our-header one-line">Decorators 🚀2</h2>
+  <pre><code class="javascript">@defineElement('date-picker')
+class DatePicker extends HTMLElement {
+  @readonly
+  today = new Date();
+
+  @bound
+  clickHandler() {
+    // ...
+  }
+}</code></pre>
+</div>
+<div>
+  <h3>Decorators are <em>functions</em></h3>
+  <pre><code class="javascript">function bound(methodDescriptor) {
+  return {
+    ...methodDescriptor,
+    extras: [{ /* bound method descriptor */ }]
+  }
+}</code></pre>
+<a class="link babel" href="https://babeljs.io/docs/plugins/transform-decorators/">transform-decorators</a>
+</div>
