@@ -33,15 +33,13 @@ return &lt;Component>Hello!&lt;/Component></code></pre>
 </div>
 <div>
   <h2 class="our-header one-line">Private fields/methods/accessors 🚀3</h2>
-  <pre><code class="javascript">class Meh {
-  <em>#</em>width;
-  <em>#</em>height;
-  get <em>#</em>area() { return this.<em>#</em>width * this.<em>#</em>height }
-  <em>#</em>init() {
-    this.<em>#</em>width = 1;
-    this.<em>#</em>height = 1;
+  <pre><code class="javascript">class Square {
+  <em>#</em>size
+  get <em>#</em>area() { return this.<em>#</em>size ** 2 }
+  <em>#</em>init(size = 1) {
+    this.<em>#</em>size = size
   }
-  constructor() { this.<em>#</em>init() }
+  constructor(size) { this.<em>#</em>init(size) }
 }</code></pre>
 </div>
 <div>
@@ -129,7 +127,7 @@ const flattened = [].<em>concat.apply</em>([], list)</code></pre>
   <h4 class="our-header">Use case: multiple item mapping</h4>
   <pre><code class="javascript">function DescList({ items }) {
   return &lt;dl>{
-    items.flatMap(({ term, desc }) => [
+    items.<em>flatMap</em>(({ term, desc }) => [
       &lt;dt>{ term }&lt;/dt>,
       &lt;dd>{ desc }&lt;/dd>
     ])
@@ -140,7 +138,7 @@ const flattened = [].<em>concat.apply</em>([], list)</code></pre>
   <h4 class="our-header">Use case: filtering and mapping</h4>
   <pre><code class="javascript">list.filter(...).map(...)</code></pre>
   <p>Return an empty array for filtered elements:</p>
-  <pre><code class="javascript">list.flatMap(item => {
+  <pre><code class="javascript">list.<em>flatMap</em>(item => {
   if (item.deleted) return []
   return item.id
 })</code></pre>
