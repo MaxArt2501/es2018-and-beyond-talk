@@ -43,3 +43,93 @@ class DatePicker extends HTMLElement {
 }</code></pre>
 <a class="link babel" href="https://babeljs.io/docs/plugins/transform-decorators/">transform-decorators</a>
 </div>
+<div>
+  <h3 class="our-header">How do they work?</h3>
+  <p>Decorators:</p>
+  <ul>
+    <li>can be applied to <em>classes</em>, <em>methods</em> and <em>fields</em>;</li>
+    <li>to <em>plain objects</em> too;</li>
+    <li>planned for <em>private fields</em>;</li>
+    <li>get an <em>element descriptor</em> of various forms as the only parameter.</p></li>
+  </ul>
+</div>
+<div>
+  <h3>Field descriptors</h3>
+  <pre><code class="typescript">interface FieldDescriptor {
+  type: 'field';
+  key: string | Symbol;
+  placement: 'own' | 'prototype' | 'static';
+  descriptor: PropertyDescriptor;
+  initializer: () => any;
+}</code></pre>
+</div>
+<div>
+  <p>Returns</p>
+  <pre><code class="typescript">interface DecoratedFieldDescriptor extends FieldDescriptor {
+  extras?: (MethodDescriptor | FieldDescriptor)[];
+  finisher?: () => any;
+}</code></pre>
+Example: <code>@readonly</code>
+<pre><code class="javascript">function readonly(fieldDescriptor) {
+  if (fieldDescriptor.type === 'class') {
+    throw TypeError('No can do')
+  }
+  const descriptor = { ...fieldDescriptor.descriptor, writable: false }
+  return { ...fieldDescriptor, descriptor }
+}</code></pre>
+</div>
+<div>
+  <h3>Method descriptors</h3>
+  <pre><code class="typescript">interface MethodDescriptor {
+  type: 'method';
+  key: string | Symbol;
+  placement: 'own' | 'prototype' | 'static';
+  descriptor: PropertyDescriptor;
+}</code></pre>
+</div>
+<div>
+  <p>Example: <code>@bound</code></p>
+  <pre><code class="javascript">function bound(methodDescriptor) {
+  return {
+    ...methodDescriptor,
+    extras: [{
+      kind: 'field',
+      key: methodDescriptor.key,
+      placement: 'own',
+      descriptor: {
+        ...methodDescriptor.descriptor,
+        value: undefined
+      },
+      initializer() {
+        return methodDescriptor.descriptor.value.bind(this)
+      }
+    }]
+  }
+}</code></pre>
+</div>
+<div>
+  <h3>Class descriptors</h3>
+  <pre><code class="typescript">interface ClassDescriptor {
+  type: 'class';
+  elements: (MethodDescriptor | FieldDescriptor)[];
+}</code></pre>
+  <p>Returns</p>
+  <pre><code class="typescript">interface DecoratedClassDescriptor {
+  elements: (MethodDescriptor | FieldDescriptor)[];
+  constructor?: () => any;
+  finisher?: Function => any;
+}</code></pre>
+</div>
+<div>
+  <p>Example: <code>@defineElement</code></p>
+  <pre><code class="javascript">function defineElement(tagName) {
+  return function(classDescriptor) {
+    return {
+      ...classDescriptor,
+      finisher(customElementClass) {
+        customElements.define(tagName, customElementClass)
+      }
+    }
+  }
+}</code></pre>
+</div>
