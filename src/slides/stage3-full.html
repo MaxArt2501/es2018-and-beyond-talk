@@ -79,6 +79,14 @@ return &lt;Component>Hello!&lt;/Component></code></pre>
 }</code></pre>
 </div>
 <div>
+  <h3 class="our-header">Two gotchas!</h3>
+    You can omit <code>this</code>, e.g. <code>return #foo</code> 🙄
+</div>
+<div>
+  <h3 class="our-header">Two gotchas!</h3>
+    You <em>cannot</em> use <code>[]</code>, e.g. <code>this['#foo']</code> 😱
+</div>
+<div>
   <h3 class="our-header">Use cases</h3>
   <p>The same of TypeScript's <code>private</code>.</p>
   <h4>But.</h4>
@@ -152,8 +160,8 @@ const flattened = [].<em>concat.apply</em>([], list)</code></pre>
   <script support>({
     "caption": "<code>Array::flat</code>/<code>::flatMap</code>",
     "support": {
-      "chrome": "69*",
-      "firefox": "62*",
+      "chrome": 69,
+      "firefox": 62,
       "safari": "12*",
       "edge": false,
       "samsung": false,
