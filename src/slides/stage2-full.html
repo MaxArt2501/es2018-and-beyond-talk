@@ -47,48 +47,68 @@ class DatePicker extends HTMLElement {
   <h3 class="our-header">How do they work?</h3>
   <p>Decorators:</p>
   <ul>
+    <li>make most sense with the <em>class field proposal 🚀3</em>;</li>
     <li>can be applied to <em>classes</em>, <em>methods</em> and <em>fields</em>;</li>
     <li>to <em>plain objects</em> too;</li>
-    <li>planned for <em>private fields</em>;</li>
+    <li>also work for <em>private fields</em>;</li>
     <li>get an <em>element descriptor</em> of various forms as the only parameter.</p></li>
   </ul>
 </div>
 <div>
-  <h3>Field descriptors</h3>
-  <pre><code class="typescript">interface FieldDescriptor {
-  type: 'field';
+  <h3>Element descriptors</h3>
+  <pre><code class="typescript">interface ElementDescriptor {
+  type: 'field' | 'method' | 'class';
+  // For classes only
+  elements: ElementDescriptor[];
+  // For fields and methods
   key: string | Symbol;
   placement: 'own' | 'prototype' | 'static';
   descriptor: PropertyDescriptor;
+  // For fields only
   initializer: () => any;
 }</code></pre>
 </div>
 <div>
-  <p>Returns</p>
-  <pre><code class="typescript">interface DecoratedFieldDescriptor extends FieldDescriptor {
-  extras?: (MethodDescriptor | FieldDescriptor)[];
-  finisher?: () => any;
+  <h3>Decorators return&hellip;</h3>
+  <pre><code class="typescript">interface DecoratedElementDescriptor
+    extends ElementDescriptor {
+  finisher: (klass: Function) => any;
+
+  // For classes only
+  constructor: (oldConstructor: Function) => any;
+
+  // For fields and methods
+  extras: (MethodDescriptor | FieldDescriptor)[];
 }</code></pre>
-Example: <code>@readonly</code>
-<pre><code class="javascript">function readonly(fieldDescriptor) {
+</div>
+<div>
+  <h3 class="our-header one-line">What can we do with decorators?</h3>
+  <ul>
+    <li>Change an element's <em>descriptor</em>;</li>
+    <li>change an element's <em>initial value</em>;</li>
+    <li>change an element's <em>key</em>;</li>
+    <li>move an element from the <em>instance</em> to the <em>prototype</em>;</li>
+    <li><em>adding</em> elements to instances or prototypes;</li>
+    <li><em>do stuff</em> at the end of a class' <em>definition</em>;</li>
+    <li><em>change a class' constructor</em>;</li>
+    <li>&hellip; and  <em>much more!</em></li>
+  </ul>
+</div>
+<div>
+  <h3 class="our-header">Use case: easy readonly fields</h3>
+  <pre><code class="javascript">function readonly(fieldDescriptor) {
   if (fieldDescriptor.type === 'class') {
     throw TypeError('No can do')
   }
-  const descriptor = { ...fieldDescriptor.descriptor, writable: false }
+  const descriptor = {
+    ...fieldDescriptor.descriptor,
+    writable: false
+  }
   return { ...fieldDescriptor, descriptor }
 }</code></pre>
 </div>
 <div>
-  <h3>Method descriptors</h3>
-  <pre><code class="typescript">interface MethodDescriptor {
-  type: 'method';
-  key: string | Symbol;
-  placement: 'own' | 'prototype' | 'static';
-  descriptor: PropertyDescriptor;
-}</code></pre>
-</div>
-<div>
-  <p>Example: <code>@bound</code></p>
+  <h3 class="our-header">Use case: auto-binding methods</h3>
   <pre><code class="javascript">function bound(methodDescriptor) {
   return {
     ...methodDescriptor,
@@ -108,28 +128,18 @@ Example: <code>@readonly</code>
 }</code></pre>
 </div>
 <div>
-  <h3>Class descriptors</h3>
-  <pre><code class="typescript">interface ClassDescriptor {
-  type: 'class';
-  elements: (MethodDescriptor | FieldDescriptor)[];
-}</code></pre>
-  <p>Returns</p>
-  <pre><code class="typescript">interface DecoratedClassDescriptor {
-  elements: (MethodDescriptor | FieldDescriptor)[];
-  constructor?: () => any;
-  finisher?: Function => any;
-}</code></pre>
-</div>
-<div>
-  <p>Example: <code>@defineElement</code></p>
-  <pre><code class="javascript">function defineElement(tagName) {
-  return function(classDescriptor) {
-    return {
-      ...classDescriptor,
-      finisher(customElementClass) {
-        customElements.define(tagName, customElementClass)
-      }
-    }
-  }
-}</code></pre>
+  <h3 class="our-header">Use cases: <em>a ton!</em></h3>
+  <ul>
+    <li>easily registering a <em>Custom Element<em>;</li>
+    <li><em>react<em> to property's value changes;</li>
+    <li>define (sort of) <em>protected<em> fields;</li>
+    <li>limit <em>how many times<em> a method can be called;</li>
+    <li>or <em>how often<em> (throttling, debouncing);</li>
+    <li>or <em>memoize<em> its returning values;</li>
+    <li>or <em>type check<em> its arguments;</li>
+    <li>class <em>ID generation<em>;</li>
+    <li>value <em>formatting<em>;</li>
+    <li><em>prevent<em> method overriding;</li>
+    <li>let your fantasy go wild!</li>
+  </ul>
 </div>
