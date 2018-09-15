@@ -87,6 +87,14 @@ h1:first-child, h2:first-child, h3:first-child, h4:first-child {
 .one-line {
   white-space: nowrap; }
 
+.two-columns {
+  display: flex; }
+  .two-columns > * {
+    margin: 0 .5em; }
+
+.invisible {
+  visibility: hidden; }
+
 .our-header {
   border-left: #f60 solid 0.15em;
   padding: .5em;
@@ -168,5 +176,20 @@ li > h4 {
     background-repeat: no-repeat; }
     .support .ko::before {
       content: "\a0"; }
+
+.simple-table {
+  border-collapse: collapse; }
+  .simple-table th, .simple-table td {
+    padding: .25em .5em; }
+    .simple-table th:not(:last-child), .simple-table td:not(:last-child) {
+      border-right: .025em dotted; }
+  .simple-table tr:not(:last-child) td, .simple-table tr:not(:last-child) th {
+    border-bottom: .025em dotted; }
+  .simple-table thead > tr:last-child > th {
+    border-bottom: .1em solid; }
+  .simple-table thead th:empty {
+    border-right: .1em solid; }
+  .simple-table tbody th:first-child {
+    border-right: .1em solid; }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,210 @@
+<div>
+  <h2>Stage 🚀1</h2>
+  <h4>Hic sunt leones</h4>
+</div>
+<div>
+  <h2 class="our-header">Observables 🚀1</h2>
+  <p>A-la RxJS <em>5</em>:</p>
+  <pre><code class="javascript">function fromEvent(el, evName) {
+  return new Observable(observer => {
+    const handler = event => observer.next(event)
+    el.addEventListener(evName, handler)
+    return () => el.removeEventListener(evName, handler)
+  });
+}
+fromEvent(theInput, 'keydown')
+  .filter(({ key }) => key === 'Escape')
+  .subscribe(() => theInput.value = '')</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Rationale</h3>
+  <table class="simple-table center">
+    <thead>
+      <tr><th></th><th>Sync</th><th>Async</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Single value</th><td><span class="invisible">functions</span></td><td><span class="invisible">promises</span></td></tr>
+      <tr><th>Multi value</th><td><span class="invisible">generators</span></td><td><span class="invisible">async generators (?!)</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h3 class="our-header">Rationale</h3>
+  <table class="simple-table center">
+    <thead>
+      <tr><th></th><th>Sync</th><th>Async</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Single value</th><td><span>functions</span></td><td><span class="invisible">promises</span></td></tr>
+      <tr><th>Multi value</th><td><span class="invisible">generators</span></td><td><span class="invisible">async generators (?!)</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h3 class="our-header">Rationale</h3>
+  <table class="simple-table center">
+    <thead>
+      <tr><th></th><th>Sync</th><th>Async</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Single value</th><td><span>functions</span></td><td><span>promises</span></td></tr>
+      <tr><th>Multi value</th><td><span class="invisible">generators</span></td><td><span class="invisible">async generators (?!)</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h3 class="our-header">Rationale</h3>
+  <table class="simple-table center">
+    <thead>
+      <tr><th></th><th>Sync</th><th>Async</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Single value</th><td><span>functions</span></td><td><span>promises</span></td></tr>
+      <tr><th>Multi value</th><td><span>generators</span></td><td><span class="invisible">async generators (?!)</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h3 class="our-header">Rationale</h3>
+  <table class="simple-table center">
+    <thead>
+      <tr><th></th><th>Sync</th><th>Async</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Single value</th><td><span>functions</span></td><td><span>promises</span></td></tr>
+      <tr><th>Multi value</th><td><span>generators</span></td><td><span>async generators (?!)</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h2 class="our-header">Difference?! 🤔</h2>
+  <div class="two-columns">
+    <aside>
+      <p>Async generators</p>
+      <ul>
+        <li><em>single</em> consumer</li>
+        <li><em>pull</em> streams</li>
+        <li>better for <em>I/O</em></li>
+      </ul>
+    </aside>
+    <aside>
+      <p>Observables</p>
+      <ul>
+        <li><em>multiple</em> consumer</li>
+        <li><em>push</em> streams</li>
+        <li>better for <em>UI events</em></li>
+      </ul>
+    </aside>
+  </div>
+</div>
+<div>
+  <h3 class="our-header">Use case: the future of <em>event listening?</em></h3>
+  <pre><code class="javascript">const unsub = window.on('message')
+  .filter(({ type }) => type === 'DONE')
+  .subscribe(({ data }) => populate(data))
+
+...
+// Stop listening to the event
+unsub()</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Optional chaining 🚀1</h2>
+  <pre><code class="javascript">const street = address ? address.street : undefined
+// becomes...
+const street = address?.street
+
+// Also for optional methods:
+user.resetPassword?.()</code></pre>
+  <a class="link npm" href="https://www.npmjs.com/package/@babel/plugin-syntax-optional-chaining">@babel/plugin-syntax-optional-chaining</a>
+</div>
+<div>
+  <h2 class="our-header"><code>do</code> expressions 🚀1</h2>
+  <p>Basically, a more compact IIFE:</p>
+  <pre><code class="javascript">const pwd = do {
+  let composed = plain + salt
+  if (mustHash) {
+    applyHash(composed, iterations)
+  }
+}</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: saner JSX templates 🙌</h4>
+  <pre><code class="javascript">function Header({ isLogged }) {
+  return &lt;header>{ <em>do</em> {
+    if (isLogged) &lt;LogoutButton />
+    else &lt;LoginButton />
+  }}&lt;/header>
+}</code></pre>
+  <a class="link babel" href="https://babeljs.io/docs/plugins/transform-do-expressions/">transform-do-expressions</a>
+</div>
+<div>
+  <h2 class="our-header">Partial applications 🚀1</h2>
+  <pre><code class="javascript">const powerOf2 = Math.pow.bind(null, 2)
+const square = n => n ** 2</code></pre>
+  <p class="invisible">now become:</p>
+  <pre class="invisible"><code class="javascript">const powerOf2 = Math.pow(2, <em>?</em>)
+const square = Math.pow(<em>?</em>, 2)</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Partial applications 🚀1</h2>
+  <pre><code class="javascript">const powerOf2 = Math.pow.bind(null, 2)
+const square = n => n ** 2</code></pre>
+  <p>now become:</p>
+  <pre><code class="javascript">const powerOf2 = Math.pow(2, <em>?</em>)
+const square = Math.pow(<em>?</em>, 2)</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Only for fixed arguments</h3>
+  <p>On hold a variant with the spread operator:</p>
+  <pre><code class="javascript">const wtfLog = console.error('🤯', <em>...</em>)
+
+wtfLog('Expecting', 'T_PAAMAYIM_NEKUDOTAYIM')
+// => 🤯 Expecting T_PAAMAYIM_NEKUDOTAYIM'</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: a functional programmer's wild dream 🤩</h4>
+  <pre><code class="javascript">function roundTo(number, rounding) {
+  return number - (number % rounding)
+}
+function clamp(number, min, max) {
+  return Math.min(Math.max(number, min), max)
+}
+const discounts = ratios
+  .map(roundTo(<em>?</em>, 1))
+  .map(clamp(<em>?</em>, 0 100))</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Pipelines 🚀1</h2>
+  <p>Two factions are fighting:</p>
+  <ul>
+    <li>F# pipelines</li>
+    <li>Smart pipelines</li>
+  </ul>
+</div>
+<div>
+  <h2 class="our-header">F# pipelines</h2>
+  <pre><code class="javascript">const coords = await resolveCoords(
+  (await (await fetch(`/api/${entity}`)).json()).user.location
+)</code></pre>
+  <p>now become:</p>
+  <pre><code class="javascript">const coords = `/api/${entity}`
+  |> fetch
+  |> await
+  |> resp => resp.json()
+  |> await
+  |> data => data.user.location
+  |> resolveCoords
+  |> await</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Smart pipelines</h2>
+  <p>F# pipelines + partial applications?</p>
+  <pre><code class="javascript">const coords = `/api/${entity}`
+  |> fetch
+  |> await #
+  |> #.json()
+  |> await #
+  |> #.user.location
+  |> resolveCoords
+  |> await #</code></pre>
+</div>

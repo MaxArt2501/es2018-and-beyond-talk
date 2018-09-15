@@ -35,6 +35,16 @@ h1, h2, h3, h4 {
   white-space: nowrap;
 }
 
+.two-columns {
+  display: flex;
+
+  > * { margin: 0 .5em; }
+}
+
+.invisible {
+  visibility: hidden;
+}
+
 .our-header {
   border-left: $brand-color solid .15em;
   padding: .5em;
@@ -143,5 +153,32 @@ li > h4 {
     &::before {
       content: "\a0";
     }
+  }
+}
+.simple-table {
+  border-collapse: collapse;
+
+  th, td {
+    padding: .25em .5em;
+
+    &:not(:last-child) {
+      border-right: .025em dotted;
+    }
+  }
+  tr:not(:last-child) {
+    td, th {
+      border-bottom: .025em dotted;
+    }
+  }
+  thead {
+    > tr:last-child > th {
+      border-bottom: .1em solid;
+    }
+    th:empty {
+      border-right: .1em solid;
+    }
+  }
+  tbody {
+    th:first-child { border-right: .1em solid; }
   }
 }
