@@ -1,0 +1,36 @@
+<div>
+  <h2 class="our-header one-line">Honorable mentions</h2>
+  <ul>
+    <li>
+      Pattern matching
+      <pre><code class="javascript">const res = throwDice(6)
+<em>case</em> (res) {
+  <em>when</em> 6 -> console.log('Wow!')
+  <em>when</em> x if (x >= 7) -> throw Error('wtf?')
+}</code></pre>
+    </li>
+    <li>
+      Slice notation
+      <pre><code class="javascript">'hello world'[3:8]   // → 'lo wo'
+'hello world'[6:]    // → 'world'
+'hello world'[0:5:2] // → 'hlo'</code></pre>
+    </li>
+  </ul>
+</div>
+<div>
+  <h2 class="our-header one-line">Honorable mentions</h2>
+  <ul>
+    <li>
+      Last item/index
+      <pre><code class="javascript">const primes = [2, 3, 5, 7, 9]
+primes.<em>lastIndex</em>     // → 4
+primes.<em>lastItem</em>      // → 9
+primes.<em>lastItem</em> = 11 // → [2, 3, 5, 7, 11]</code></pre>
+    </li>
+    <li>
+      Freeze/seal syntax
+      <pre><code class="javascript">const foo = {<em>#</em> bar: 42 <em>#</em>} // Object.freeze({bar : 42})
+const arr = [<em>|</em> 'a', 'b' <em>|</em>] // Object.seal(['a', 'b'])</code></pre>
+    </li>
+</div>
+<div data-background-image="img/js-dundee.png"></div>
