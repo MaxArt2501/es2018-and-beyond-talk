@@ -54,7 +54,7 @@ const square = Math.pow(?, 2)</code></pre>
   <pre><code class="javascript">const coords = await resolveCoords(
   (await (await fetch(`/api/${entity}`)).json()).user.location
 )</code></pre>
-  <p>now become:</p>
+  <p>now becomes:</p>
   <pre><code class="javascript">const coords = `/api/${entity}`
   |> fetch
   |> await
