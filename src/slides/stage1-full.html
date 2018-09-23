@@ -171,7 +171,7 @@ function clamp(number, min, max) {
 }
 const discounts = ratios
   .map(roundTo(<em>?</em>, 1))
-  .map(clamp(<em>?</em>, 0 100))</code></pre>
+  .map(clamp(<em>?</em>, 0, 100))</code></pre>
 </div>
 <div>
   <h2 class="our-header">Pipelines 🚀1</h2>
@@ -182,29 +182,73 @@ const discounts = ratios
   </ul>
 </div>
 <div>
+  <h2 class="our-header">Minimal proposal: sugar syntax</h2>
+  <pre><code class="javascript">value |> f
+// desugars to
+f(value)</code></pre>
+  <p><em>Desugaring</em> also means that there's no need to <code>bind</code> object methods:</p>
+  <pre><code class="javascript">const count = 16
+count |> 'na'.repeat
+      |> (x => x + ' Batman!')</code></pre>
+</div>
+<div>
+  <h3 class="one-line">Wonderful with partial applications</h3>
+  <pre><code class="javascript">player.score
+  |> roundTo(?, 100)
+  |> clamp(0, 1e6, ?)</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Limitations</h3>
+  <ul>
+    <li>
+      ❌ Not allowed: <code>await</code>
+      <pre><code class="javascript">fetch('foo.json') |> <em>await</em></code></pre>
+    </li>
+    <li>
+      ❌ Not allowed: <code>new</code>
+      <pre><code class="javascript">'2018-09-26' |> new Date</code></pre>
+    </li>
+    <li>
+      😕 Functions must be enclosed:
+      <pre><code class="javascript">'world' |> (x => `Hello, ${x}!`)</code></pre>
+    </li>
+  </ul>
+</div>
+<div>
+  <h2 class="our-header one-line">Avoid intermediary variables</h2>
+  <pre><code class="javascript">const result = await fetch(`/api/${entity}`)
+const data = await result.json()
+const cobj = new Coords(data.user.location)
+const coords = await cobj.resolve()</code></pre>
+  <p>should be written as</p>
+  <pre><code class="javascript">const coords = await new Coords(
+  (await (
+    await fetch(`/api/${entity}`)).json()
+  ).user.location
+).resolve()</code></pre>
+</div>
+<div data-background-image="img/r-u-kidding-me.png"></div>
+<div>
   <h2 class="our-header">F# pipelines</h2>
-  <pre><code class="javascript">const coords = await resolveCoords(
-  (await (await fetch(`/api/${entity}`)).json()).user.location
-)</code></pre>
-  <p>now become:</p>
   <pre><code class="javascript">const coords = `/api/${entity}`
   |> fetch
   |> await
-  |> resp => resp.json()
+  |> (resp => resp.json())
   |> await
-  |> data => data.user.location
-  |> resolveCoords
+  |> (data => new Coords(data.user.location))
+  |> (coords => coords.resolve())
   |> await</code></pre>
 </div>
 <div>
   <h2 class="our-header">Smart pipelines</h2>
-  <p>F# pipelines + partial applications?</p>
+  <p>Two flavours: <em>bare</em> and <em>topic</em>:</p>
   <pre><code class="javascript">const coords = `/api/${entity}`
   |> fetch
   |> await #
   |> #.json()
   |> await #
   |> #.user.location
-  |> resolveCoords
+  |> new Coords(#)
+  |> #.resolve()
   |> await #</code></pre>
 </div>
