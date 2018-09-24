@@ -81,6 +81,11 @@ pre {
 h1:first-child, h2:first-child, h3:first-child, h4:first-child {
   margin-top: 0; }
 
+h1.invert, h2.invert, h3.invert, h4.invert {
+  color: white;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke: .025em #34383e; }
+
 .center {
   text-align: center; }
 

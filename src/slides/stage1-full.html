@@ -1,6 +1,8 @@
 <div>
-  <h2>Stage 🚀1</h2>
-  <h4>Hic sunt leones</h4>
+  <h2 class="our-header one-line">Stage 🚀1</h2>
+</div>
+<div data-background-image="img/tofu-lion.webp">
+  <h2 class="one-line invert" style="margin-top: 5em;">Hic sunt leones</h2>
 </div>
 <div>
   <h2 class="our-header">Observables 🚀1</h2>
@@ -128,7 +130,7 @@ user.resetPassword?.()</code></pre>
 }</code></pre>
 </div>
 <div>
-  <h4 class="our-header">Use case: saner JSX templates 🙌</h4>
+  <h4 class="our-header">Use case: <em>saner JSX templates</em> 🙌</h4>
   <pre><code class="javascript">function Header({ isLogged }) {
   return &lt;header>{ <em>do</em> {
     if (isLogged) &lt;LogoutButton />
@@ -162,7 +164,7 @@ wtfLog('Expecting', 'T_PAAMAYIM_NEKUDOTAYIM')
 // => 🤯 Expecting T_PAAMAYIM_NEKUDOTAYIM'</code></pre>
 </div>
 <div>
-  <h4 class="our-header">Use case: a functional programmer's wild dream 🤩</h4>
+  <h4 class="our-header">Use case: a <em>functional programmer's wild dream</em> 🤩</h4>
   <pre><code class="javascript">function roundTo(number, rounding) {
   return number - (number % rounding)
 }
@@ -182,11 +184,25 @@ const discounts = ratios
   </ul>
 </div>
 <div>
+  <h2 class="our-header one-line">Avoid intermediary variables</h2>
+  <pre><code class="javascript">const result = await fetch(`/api/${entity}`)
+const data = await result.json()
+const cobj = new Coords(data.user.location)
+const coords = await cobj.resolve()</code></pre>
+  <p>should be written as</p>
+  <pre><code class="javascript">const coords = await new Coords(
+  (await (
+    await fetch(`/api/${entity}`)).json()
+  ).user.location
+).resolve()</code></pre>
+</div>
+<div data-background-image="img/r-u-kidding-me.png"></div>
+<div>
   <h2 class="our-header">Minimal proposal: sugar syntax</h2>
-  <pre><code class="javascript">value |> f
+  <pre><code class="javascript">value <em>|></em> f
 // desugars to
 f(value)</code></pre>
-  <p><em>Desugaring</em> also means that there's no need to <code>bind</code> object methods:</p>
+  <p><em>Desugaring</em> also means that there's no need to <code>bind</code> methods:</p>
   <pre><code class="javascript">const count = 16
 count |> 'na'.repeat
       |> (x => x + ' Batman!')</code></pre>
@@ -214,20 +230,6 @@ count |> 'na'.repeat
     </li>
   </ul>
 </div>
-<div>
-  <h2 class="our-header one-line">Avoid intermediary variables</h2>
-  <pre><code class="javascript">const result = await fetch(`/api/${entity}`)
-const data = await result.json()
-const cobj = new Coords(data.user.location)
-const coords = await cobj.resolve()</code></pre>
-  <p>should be written as</p>
-  <pre><code class="javascript">const coords = await new Coords(
-  (await (
-    await fetch(`/api/${entity}`)).json()
-  ).user.location
-).resolve()</code></pre>
-</div>
-<div data-background-image="img/r-u-kidding-me.png"></div>
 <div>
   <h2 class="our-header">F# pipelines</h2>
   <pre><code class="javascript">const coords = `/api/${entity}`

@@ -26,6 +26,11 @@ h1, h2, h3, h4 {
   &:first-child {
     margin-top: 0;
   }
+  &.invert {
+    color: white;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: .025em #34383e;
+  }
 }
 
 .center {
