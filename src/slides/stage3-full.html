@@ -129,13 +129,13 @@ array.flat(Infinity)        // [1, 2, 3, 4]</code></pre>
   </div>
 </div>
 <div>
-  <h4 class="our-header">Use case: <code>flat</code></h4>
+  <h4 class="our-header">Use case: <em><code>flat</code></em></h4>
   <p>Because this is awkward and unclear:</p>
   <pre><code class="javascript">const list = [[1], [2, 3], [4]]
 const flattened = [].<em>concat.apply</em>([], list)</code></pre>
 </div>
 <div>
-  <h4 class="our-header">Use case: multiple item mapping</h4>
+  <h4 class="our-header">Use case: <em>multiple item mapping</em></h4>
   <pre><code class="javascript">function DescList({ items }) {
   return &lt;dl>{
     items.<em>flatMap</em>(({ term, desc }) => [
@@ -146,7 +146,7 @@ const flattened = [].<em>concat.apply</em>([], list)</code></pre>
 }</code></pre>
 </div>
 <div>
-  <h4 class="our-header">Use case: filtering and mapping</h4>
+  <h4 class="our-header">Use case: <em>filtering and mapping</em></h4>
   <pre><code class="javascript">list.filter(...).map(...)</code></pre>
   <p>Return an empty array for filtered elements:</p>
   <pre><code class="javascript">list.<em>flatMap</em>(item => {

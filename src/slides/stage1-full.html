@@ -78,6 +78,7 @@ fromEvent(theInput, 'keydown')
     </tbody>
   </table>
 </div>
+<div data-background-image="img/65-wat.webp"></div>
 <div>
   <h2 class="our-header">Difference?! 🤔</h2>
   <div class="two-columns">
@@ -119,6 +120,7 @@ const street = address?.street
 user.resetPassword?.()</code></pre>
   <a class="link npm" href="https://www.npmjs.com/package/@babel/plugin-syntax-optional-chaining">@babel/plugin-syntax-optional-chaining</a>
 </div>
+<div data-background-image="img/yes.webp"></div>
 <div>
   <h2 class="our-header"><code>do</code> expressions 🚀1</h2>
   <p>Basically, a more compact IIFE:</p>
@@ -177,11 +179,20 @@ const discounts = ratios
 </div>
 <div>
   <h2 class="our-header">Pipelines 🚀1</h2>
-  <p>Two factions are fighting:</p>
-  <ul>
-    <li>F# pipelines</li>
-    <li>Smart pipelines</li>
-  </ul>
+  <img src="img/tubes.webp" alt="Futurama!">
+</div>
+<div>
+  <h2 class="our-header one-line">Avoid intermediary variables</h2>
+  <pre><code class="javascript">const result = await fetch(`/api/${entity}`)
+const data = await result.json()
+const cobj = new Coords(data.user.location)
+const coords = await cobj.resolve()</code></pre>
+  <p class="invisible">should be written as</p>
+  <pre class="invisible"><code class="javascript">const coords = await new Coords(
+  (await (
+    await fetch(`/api/${entity}`)).json()
+  ).user.location
+).resolve()</code></pre>
 </div>
 <div>
   <h2 class="our-header one-line">Avoid intermediary variables</h2>
@@ -202,7 +213,7 @@ const coords = await cobj.resolve()</code></pre>
   <pre><code class="javascript">value <em>|></em> f
 // desugars to
 f(value)</code></pre>
-  <p><em>Desugaring</em> also means that there's no need to <code>bind</code> methods:</p>
+  <p>Desugaring: <em>no need to <code>bind</code></em> methods:</p>
   <pre><code class="javascript">const count = 16
 count |> 'na'.repeat
       |> (x => x + ' Batman!')</code></pre>
@@ -225,7 +236,7 @@ count |> 'na'.repeat
       <pre><code class="javascript">'2018-09-26' |> new Date</code></pre>
     </li>
     <li>
-      😕 Functions must be enclosed:
+      😕 Functions should be enclosed:
       <pre><code class="javascript">'world' |> (x => `Hello, ${x}!`)</code></pre>
     </li>
   </ul>
