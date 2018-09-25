@@ -83,7 +83,7 @@
     <li><code>async</code>/<code>await</code></li>
     <li>Shared memory and atomics 👻</li>
     <li>Trailing commas in parameters</li>
-    <li><code>String::padLeft</code>/<code>::padRight</code></li>
+    <li><code>String::padStart</code>/<code>::padEnd</code></li>
     <li><code>Object.values</code>/<code>.entries</code></li>
     <li><code>Object.getOwnPropertyDescriptors</code></li>
   </ul>
@@ -114,21 +114,9 @@
 <pre><code class="javascript">someAsyncStuff()
   .then(dealWithResult)
   .catch(handleMess)
-  .finally(cleanUp)</code></pre>
+  .<em>finally</em>(cleanUp)</code></pre>
   <a href="https://www.npmjs.com/package/promise.prototype.finally" class="link npm">promise.prototype.finally</a>
 </div>
-<!--div>
-  <h4 class="one-line our-header">Can't I just use another <code>then</code>?</h4>
-  <div class="center" style="font-size: 2em">🤔</div>
-</div>
-<div>
-  <h2 class="our-header">Nope.</h2>
-  <pre><code class="javascript">someAsyncStuff()
-  .then(dealWithResult)
-  .catch(() => throw 'up')
-  .then(() => console.log('🏁'))</code></pre>
-  <p>It wouldn't log the flag&hellip;</p>
-</div-->
   <div>
   <h3 class="our-header">
     <code>for await...of</code><br>
@@ -204,9 +192,9 @@ console.log(num.test('𝟏𝟜𝟩𝟬𝟼')) // 👍</code></pre>
   <div class="center" style="font-size: 2em">🔭</div>
 </div>
 <div>
-  <h2 class="our-header one-line">Proposal stages:</h2>
+  <h2 class="our-header one-line">Proposal stages 🚀</h2>
   <ul>
-    <li><a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md">Stage 4</a>: reccomendations</li>
+    <li><a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md">Stage 4</a>: recommendations</li>
     <li><a href="https://github.com/tc39/proposals#stage-3">Stage 3</a>: candidates</li>
     <li><a href="https://github.com/tc39/proposals#stage-2">Stage 2</a>: drafts</li>
     <li><a href="https://github.com/tc39/proposals#stage-1">Stage 1</a>: proposals</li>
@@ -238,14 +226,14 @@ return &lt;Component>Hello!&lt;/Component></code></pre>
 </div>
 <div>
   <h2 class="our-header one-line">
-    <code>Array::flatMap</code>/<code>::<s>flatten</s>smoosh</code> 🚀3
+    <code>Array::flatMap</code><br>
+    <code>Array::<s>flatten</s> <s>smoosh</s> flat</code> 🚀3
   </h2>
   <pre><code class="javascript">[1, 2].flatMap(n => [n, n*n]) // [1, 1, 2, 4]
 
 const array = [1, [2, 3], [[4]]]
-array.smoosh()                // [1, 2, 3, [4]]
-array.smoosh(Infinity)        // [1, 2, 3, 4]</code></pre>
-    <p>PSA: it <em>won't</em> be called <code>smoosh</code> for real&hellip;</p>
+array.flat()                // [1, 2, 3, [4]]
+array.flat(Infinity)        // [1, 2, 3, 4]</code></pre>
 </div>
   <div>
   <h2 class="our-header one-line">Static class fields/methods 🚀2</h2>
@@ -337,7 +325,7 @@ const square = Math.pow(?, 2)</code></pre>
   <pre><code class="javascript">const coords = await resolveCoords(
   (await (await fetch(`/api/${entity}`)).json()).user.location
 )</code></pre>
-  <p>now become:</p>
+  <p>now becomes:</p>
   <pre><code class="javascript">const coords = `/api/${entity}`
   |> fetch
   |> await

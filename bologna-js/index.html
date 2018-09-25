@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <base href="..">
+  <title>ES2018 and beyond</title>
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" href="css/big.css">
+  <link rel="stylesheet" href="css/highlight.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="brand">
+  <div>
+  <h1 class="one-line center">ES2018 and beyond</h2>
+  <img src="../img/bojs.svg" alt="Bologna JS Logo">
+  <p class="center">Bologna - 2018-09-26</p>
+  <p class="center one-line">
+    <a href="https://maxart2501.github.io/es2018-and-beyond-talk/bologna-js/">
+      maxart2501.github.io/es2018-and-beyond-talk/bologna-js/
+    </a>
+  </p>
+</div>
+  <div>
+  <h2 class="our-header">Massimo Artizzu</h2>
+  <h4 class="center">
+    <a href="https://github.com/MaxArt2501"><img src="img/github.svg" alt="GitHub logo" class="icon"></a> /
+    <a href="https://twitter.com/MaxArt2501"><img src="img/twitter.svg" alt="Twitter logo" class="icon"></a>
+    @MaxArt2501<br>
+    <a href="https://italiajs.slack.com/messages/D4M5TPJ1L/"><img src="img/slack.svg" alt="Slack logo" class="icon"></a> maxart
+  </h4>
+  <div class="center">
+    <img src="img/logo-antreem.svg" alt="Antreem logo" style="height: 2em;">
+  </div>
+</div>
+  <div>
+  <h2 class="our-header">ES2015 was <em>fantastic</em></h2>
+  <ul class="falling">
+    <li>destructuring</li>
+    <li>generators</li>
+    <li>promises</li>
+    <li>symbols</li>
+    <li>typed arrays</li>
+    <li>spread operator</li>
+    <li>arrow functions</li>
+    <li>default parameters</li>
+    <li>rest parameters</li>
+    <li>template literals</li>
+    <li>tail call optimization</li>
+    <li>computed property names</li>
+    <li>computed accessors</li>
+    <li>shorthand properties</li>
+    <li>shorthand methods</li>
+    <li><code>Map</code>/<code>WeakMap</code></li>
+    <li><code>Set</code>/<code>WeakSet</code></li>
+    <li><code>Array.from</code>/<code>.of</code></li>
+    <li><code>Array::find</code>/<code>::findIndex</code></li>
+    <li><code>String::startsWith</code>/<code>::endsWith</code></li>
+    <li><code>class</code></li>
+    <li><code>Proxy</code></li>
+    <li><code>Reflect</code></li>
+    <li><code>for...of</code></li>
+    <li><code>String::codePointAt</code></li>
+    <li><code>String::includes</code></li>
+    <li><code>Array::includes</code></li>
+    <li><code>Array::fill</code></li>
+    <li><code>Object.assign</code></li>
+    <li><code>Object.is</code></li>
+    <li><code>Number</code> properties</li>
+    <li><code>Math</code> methods</li>
+  </ul>
+</div>
+  <div>
+  <h2 class="our-header">ES2016 was&hellip; <em>meh</em>.</h2>
+  <ul>
+    <li>exponentiation operator (<code>**</code>)</li>
+    <li><code>Array::includes</code></li>
+  </ul>
+</div>
+  <div>
+  <h2 class="our-header">ES2017 had <em>some meat</em> again</h2>
+  <ul>
+    <li><code>async</code>/<code>await</code></li>
+    <li>Shared memory and atomics 👻</li>
+    <li>Trailing commas in parameters</li>
+    <li><code>String::padStart</code>/<code>::padEnd</code></li>
+    <li><code>Object.values</code>/<code>.entries</code></li>
+    <li><code>Object.getOwnPropertyDescriptors</code></li>
+  </ul>
+</div>
+  <div>
+  <h2 class="our-header">And <em>this is</em> ES2018:</h2>
+  <ul>
+    <li>Object spread 🎉</li>
+    <li><code>Promise::finally</code></li>
+    <li><code>for await...of</code></li>
+    <li>Regex lookbehinds</li>
+    <li>Regex Unicode escapes</li>
+    <li>Regex named captures</li>
+    <li>Regex <code>dotAll</code></li>
+    <li>Template literal revision</li>
+  </ul>
+</div>
+  <div>
+  <h3 class="our-header">We already know and ❤️:</h3>
+  <pre><code class="javascript">const settings = {
+  ...defaultSettings,
+  ...userSettings
+}</code></pre>
+  <a class="link babel" href="https://babeljs.io/docs/plugins/transform-object-rest-spread/">transform-object-rest-spread</a>
+</div>
+  <div>
+  <h3 class="our-header">Basically the same:</h3>
+  <pre><code class="javascript">const opts1 = {
+  ...defaults,
+  async: true
+};
+const opts2 = Object.assign(
+  {},
+  defaults,
+  { async: true }
+);</code></pre>
+  <p>
+    Main difference: spread <em>defines</em> new properties, <code>Object.assign</code> <em>calls the setters</em> to set the values. (See:
+    <a href="http://2ality.com/2016/10/rest-spread-properties.html#spread-defines-properties-objectassign-sets-them">2ality</a>)
+  </p>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <table class="support">
+    <caption>Spread operator</caption>
+    <thead>
+      <tr>
+        <th><img src="img/chrome.svg" alt="Chrome logo"></th>
+        <th><img src="img/firefox.svg" alt="Firefox logo"></th>
+        <th><img src="img/safari.svg" alt="Safari logo"></th>
+        <th><img src="img/edge.svg" alt="Edge logo"></th>
+        <th><img src="img/samsung.svg" alt="Samsung Internet logo"></th>
+        <th><img src="img/node.svg" alt="Node.js logo"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ok">60</td>
+        <td class="ok">55</td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ok">8.3</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <div>
+  <h3 class="our-header">This should be clear:</h3>
+<pre><code class="javascript">someAsyncStuff()
+  .then(dealWithResult)
+  .catch(handleMess)
+  .<em>finally</em>(cleanUp)</code></pre>
+  <a href="https://www.npmjs.com/package/promise.prototype.finally" class="link npm">promise.prototype.finally</a>
+</div>
+  <div>
+  <h4 class="one-line our-header">Can't I just use another <code>then</code>?</h4>
+  <div class="center" style="font-size: 2em">🤔</div>
+</div>
+<div>
+  <h2 class="our-header">Nope.</h2>
+  <pre><code class="javascript">someAsyncStuff()
+  .then(dealWithResult)
+  .catch(() => throw 'up')
+  .then(() => console.log('🏁'))</code></pre>
+  <p>It wouldn't log the flag&hellip;</p>
+</div>
+<div>
+  <h3 class="our-header">It's dual to&hellip;</h3>
+  <pre><code class="javascript">try {
+  someSyncStuff()
+  dealWithResult()
+} catch (e) {
+  throw 'up'
+} finally {
+  console.log('🏁')
+}</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <table class="support">
+    <caption><code>Promise::finally</code></caption>
+    <thead>
+      <tr>
+        <th><img src="img/chrome.svg" alt="Chrome logo"></th>
+        <th><img src="img/firefox.svg" alt="Firefox logo"></th>
+        <th><img src="img/safari.svg" alt="Safari logo"></th>
+        <th><img src="img/edge.svg" alt="Edge logo"></th>
+        <th><img src="img/samsung.svg" alt="Samsung Internet logo"></th>
+        <th><img src="img/node.svg" alt="Node.js logo"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ok">63</td>
+        <td class="ok">58</td>
+        <td class="ok">11.1</td>
+        <td class="ok">18*</td>
+        <td class="ko"></td>
+        <td class="ok">10</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <div>
+  <h3 class="our-header">
+    <code>for await...of</code><br>
+    or better: <em>asynchronous generators</em>
+  </h3>
+  <pre><code class="javascript">async function* spillButChill() {
+  for (const thing of list)
+    yield thing
+}</code></pre>
+  <a class="link babel" href="https://babeljs.io/docs/plugins/transform-async-generator-functions/">transform-async-generator-functions</a>
+</div>
+<div>
+  <h3 class="our-header">And then it's like</h3>
+  <pre><code class="javascript">const iterable = spillButChill()
+for <em>await</em> (const thing of iterable) {
+  console.log('This thing:', thing)
+}</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Under the hood</h3>
+  <p>Iterator's <code>next()</code> method returns a <em><code>Promise</code></em>:</p>
+  <pre><code class="javascript">const iterable = spillButChill()
+const iterator = iterable[Symbol.<em>asyncIterator</em>]
+iterator.next()
+  <em>.then</em>(thing => {
+    // ...
+    return iterator.next()
+  })
+  <em>.then</em>(...)</code></pre>
+</div>
+<div>
+  <h3 class="our-header">A use case w/ Node 10</h3>
+  <pre><code class="javascript">const stream = fs.createReadStream(filepath)
+let size = 0
+for await (const chunk of stream) {
+  size += chunk.length
+}
+console.log('File size:', size)</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <table class="support">
+    <caption>Async iterators</caption>
+    <thead>
+      <tr>
+        <th><img src="img/chrome.svg" alt="Chrome logo"></th>
+        <th><img src="img/firefox.svg" alt="Firefox logo"></th>
+        <th><img src="img/safari.svg" alt="Safari logo"></th>
+        <th><img src="img/edge.svg" alt="Edge logo"></th>
+        <th><img src="img/samsung.svg" alt="Samsung Internet logo"></th>
+        <th><img src="img/node.svg" alt="Node.js logo"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ok">63</td>
+        <td class="ok">57</td>
+        <td class="ok">12</td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ok">10</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <div>
+  <h2 class="our-header">New stuff for regexes!</h2>
+  <h4>I.e.: new ways to make two problems out of one</h4>
+</div>
+<div>
+  <h2 class="our-header"><code>dotAll</code></h2>
+  <pre><code class="javascript">/./.test('\n')  // 👎
+/./s.test('\n') // 👍</code></pre>
+  <a class="link babel" href="https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-dotall-regex">transform-dotall-regex</a>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <table class="support">
+    <caption>Regex "dotAll" flag</caption>
+    <thead>
+      <tr>
+        <th><img src="img/chrome.svg" alt="Chrome logo"></th>
+        <th><img src="img/firefox.svg" alt="Firefox logo"></th>
+        <th><img src="img/safari.svg" alt="Safari logo"></th>
+        <th><img src="img/edge.svg" alt="Edge logo"></th>
+        <th><img src="img/samsung.svg" alt="Samsung Internet logo"></th>
+        <th><img src="img/node.svg" alt="Node.js logo"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ok">62</td>
+        <td class="ko"></td>
+        <td class="ok">11.1</td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ok">8.10</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h2 class="our-header">Named captures</h2>
+  <pre><code class="javascript">const re = /^(?<em>&lt;protocol></em>https?):/
+const match = re.exec(url)
+const { protocol } = match.groups</code></pre>
+    <p>Also accessible with <code>match[1]</code></p>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <table class="support">
+    <caption>Regex named captures</caption>
+    <thead>
+      <tr>
+        <th><img src="img/chrome.svg" alt="Chrome logo"></th>
+        <th><img src="img/firefox.svg" alt="Firefox logo"></th>
+        <th><img src="img/safari.svg" alt="Safari logo"></th>
+        <th><img src="img/edge.svg" alt="Edge logo"></th>
+        <th><img src="img/samsung.svg" alt="Samsung Internet logo"></th>
+        <th><img src="img/node.svg" alt="Node.js logo"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ok">64</td>
+        <td class="ko"></td>
+        <td class="ok">11.1</td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ok">10</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h2 class="our-header">Lookbehinds</h2>
+  <p>Check if something comes <em>before</em>:</p>
+  <pre><code class="javascript">const re = /(<em>?&lt;=</em>\. )[a-z]/g
+title = title.replace
+    (re, i => i.toUpperCase())</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <table class="support">
+    <caption>Regex lookbehinds</caption>
+    <thead>
+      <tr>
+        <th><img src="img/chrome.svg" alt="Chrome logo"></th>
+        <th><img src="img/firefox.svg" alt="Firefox logo"></th>
+        <th><img src="img/safari.svg" alt="Safari logo"></th>
+        <th><img src="img/edge.svg" alt="Edge logo"></th>
+        <th><img src="img/samsung.svg" alt="Samsung Internet logo"></th>
+        <th><img src="img/node.svg" alt="Node.js logo"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ok">62</td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ok">8.10</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h2 class="our-header">Unicode escapes</h2>
+  <p>Syntax: <code>\p{<em>category_name</em>=<em>set_name</em>}</code></p>
+  <p>Use <code>\P</code> to <em>not</em> include the set.</p>
+  <pre><code class="javascript">const greek = /^\p{<em>Script</em>=<em>Greek</em>}+$/
+console.log(greek.test('μετά')) // 👍</code></pre>
+</div>
+<div>
+  <pre><code class="javascript">const num = /^\p{Decimal_Number}+$/
+console.log(num.test('𝟏𝟜𝟩𝟬𝟼')) // 👍</code></pre>
+  <p>If the category is <code>General_Category</code>, it can be omitted.</p>
+</div>
+<div>
+  <h2 class="our-header">We can match <em>emojis</em>! 🎉</h2>
+  <pre><code class="javascript">const emoji = /\p{<em>Emoji_Presentation</em>}
+  |\p{<em>Emoji_Modifier_Base</em>}\p{<em>Emoji_Modifier</em>}?
+  |\p{<em>Emoji</em>}\ufe0f/u
+console.log(emoji.test('🎉')) // 👍
+console.log(emoji.test('👍🏼')) // 👍
+console.log(emoji.test('↔️')) // 👍</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <table class="support">
+    <caption>Regex Unicode escapes</caption>
+    <thead>
+      <tr>
+        <th><img src="img/chrome.svg" alt="Chrome logo"></th>
+        <th><img src="img/firefox.svg" alt="Firefox logo"></th>
+        <th><img src="img/safari.svg" alt="Safari logo"></th>
+        <th><img src="img/edge.svg" alt="Edge logo"></th>
+        <th><img src="img/samsung.svg" alt="Samsung Internet logo"></th>
+        <th><img src="img/node.svg" alt="Node.js logo"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ok">64</td>
+        <td class="ko"></td>
+        <td class="ok">11.1</td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ok">10</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <div>
+  <h2 class="our-header one-line">Template Literal Revision</h2>
+  <p>This isn't illegal anymore:</p>
+  <pre><code class="javascript">String.raw`c:\users`</code></pre>
+</div>
+  <div>
+  <h3 class="our-header">Support</h3>
+  <table class="support">
+    <caption>Template literal revision</caption>
+    <thead>
+      <tr>
+        <th><img src="img/chrome.svg" alt="Chrome logo"></th>
+        <th><img src="img/firefox.svg" alt="Firefox logo"></th>
+        <th><img src="img/safari.svg" alt="Safari logo"></th>
+        <th><img src="img/edge.svg" alt="Edge logo"></th>
+        <th><img src="img/samsung.svg" alt="Samsung Internet logo"></th>
+        <th><img src="img/node.svg" alt="Node.js logo"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ok">62</td>
+        <td class="ok">54</td>
+        <td class="ok">11</td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ok">8.10</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <div>
+  <h2 class="our-header one-line">So&hellip; what's waiting for us?</h2>
+  <div class="center" style="font-size: 2em">🔭</div>
+</div>
+<div>
+  <h2 class="our-header one-line">Proposal stages 🚀</h2>
+  <ul>
+    <li><a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md">Stage 4</a>: recommendations</li>
+    <li><a href="https://github.com/tc39/proposals#stage-3">Stage 3</a>: candidates</li>
+    <li><a href="https://github.com/tc39/proposals#stage-2">Stage 2</a>: drafts</li>
+    <li><a href="https://github.com/tc39/proposals#stage-1">Stage 1</a>: proposals</li>
+    <li><a href="https://github.com/tc39/proposals/blob/master/stage-0-proposals.md">Stage 0</a>: strawman</li>
+  </ul>
+</div>
+  <div data-background-image="img/gatsby.webp">
+  <h2 class="our-header invert" style="margin-top: 4em;">Stage 🚀4</h2>
+</div>
+<div>
+  <h2 class="our-header">Optional <code>catch</code> binding 🚀4</h2>
+  <pre><code class="javascript">try {
+  potentiallyDeadlyThing()
+} catch {
+  console.info('¯\_(ツ)_/¯')
+}</code></pre>
+</div>
+<div data-background-image="img/butwhy.webp"></div>
+<div>
+  <h4 class="our-header">Use case: <em>feature detection</em></h4>
+  <pre><code class="javascript">let unicodeSupport
+try {
+  new RegExp('.', 'u')
+  unicodeSupport = true
+} catch {
+  unicodeSupport = false
+}</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: <em>possible format errors</em></h4>
+  <pre><code class="javascript">let data
+try {
+  data = JSON.parse(rawString)
+} catch {
+  data = {}
+}</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: <em>easy property fallback</em></h4>
+  <pre><code class="javascript">let itemId
+try {
+  itemId = group.reference.item.id
+} catch {
+  itemId = null
+}</code></pre>
+  <p>P.S.: there's another proposal for this case&hellip;</p>
+</div>
+<div>
+  <h4 class="our-header">Use case: <em>even logging can fail</em></h4>
+  <pre><code class="javascript">try {
+  loggerService.log('😱')
+} catch { /* 😭 */ }</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: <em>I'm just horrible&hellip;</em></h4>
+  <pre><code class="javascript">try {
+  backendService.saveVitalInfo(payload)
+} catch {
+  console.error(`Pay me
+    if you want error management!`)
+}</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <table class="support">
+    <caption>Optional <code>catch</code> binding</caption>
+    <thead>
+      <tr>
+        <th><img src="img/chrome.svg" alt="Chrome logo"></th>
+        <th><img src="img/firefox.svg" alt="Firefox logo"></th>
+        <th><img src="img/safari.svg" alt="Safari logo"></th>
+        <th><img src="img/edge.svg" alt="Edge logo"></th>
+        <th><img src="img/samsung.svg" alt="Samsung Internet logo"></th>
+        <th><img src="img/node.svg" alt="Node.js logo"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ok">66</td>
+        <td class="ok">58</td>
+        <td class="ok">11.1</td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ok">8.10</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <div data-background-image="img/good-bad-ugly.webp">
+  <h2 class="our-header invert" style="margin-top: 4em;">Stage 🚀3</h2>
+</div>
+<div>
+  <h2 class="our-header">
+    <code>import()</code> 🚀3
+  </h2>
+  <pre><code class="javascript">const module = `./components/${type}.js`;
+const Component = await import(module)
+return &lt;Component>Hello!&lt;/Component></code></pre>
+  <a class="link babel" href="https://babeljs.io/docs/plugins/syntax-dynamic-import/">syntax-dynamic-import</a>
+</div>
+<div>
+  <h3>Way ahead of you!</h3>
+  <ul>
+    <li>It soon <em>replaced</em> <code>require.ensure</code> in webpack.</li>
+    <li>
+      Remember you can <em>code-split</em> and <em>lazy-load</em>,
+      but <em>not tree-shake</em> with <code>import()</code>!
+    </li>
+  </ul>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <table class="support">
+    <caption>Dynamic import</caption>
+    <thead>
+      <tr>
+        <th><img src="img/chrome.svg" alt="Chrome logo"></th>
+        <th><img src="img/firefox.svg" alt="Firefox logo"></th>
+        <th><img src="img/safari.svg" alt="Safari logo"></th>
+        <th><img src="img/edge.svg" alt="Edge logo"></th>
+        <th><img src="img/samsung.svg" alt="Samsung Internet logo"></th>
+        <th><img src="img/node.svg" alt="Node.js logo"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ok">63</td>
+        <td class="ko"></td>
+        <td class="ok">11.1</td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h2 class="our-header one-line">Private fields/methods/accessors 🚀3</h2>
+  <pre><code class="javascript">class Square {
+  <em>#</em>size
+  get <em>#</em>area() { return this.<em>#</em>size ** 2 }
+  <em>#</em>init(size = 1) {
+    this.<em>#</em>size = size
+  }
+  constructor(size) { this.<em>#</em>init(size) }
+}</code></pre>
+</div>
+<div>
+  <h2 class="our-header one-line">Why not <em><code>private</code></em>?! 😠</h2>
+  <ul>
+    <li>Has been reserved for decades;</li>
+    <li>OOP developers wouldn't feel lost;</li>
+    <li>already used in TypeScript.</li>
+  </ul>
+</div>
+<div>
+  <h2 class="our-header one-line">
+    PSA: those are <em>not</em> properties!<br>
+    <small>They're <em>fields</em>.</small>
+  </h2>
+  <pre><code class="javascript">class Foo {
+  private name
+  constructor(name) {
+    this.name = name
+  }
+  copyFrom(source) {
+    this.name = source.name
+  }
+}</code></pre>
+  <p>Property resolution would be more complicated.</p>
+  <p>If you have time, read <a href="https://github.com/tc39/proposal-private-fields/issues/14">here</a>.</p>
+</div>
+<div>
+  <h3 class="our-header">What about TypeScript?</h3>
+  <p>
+    It <a href="https://github.com/Microsoft/TypeScript/issues/16324">will not</a>
+    transpile <em><code>private</code></em> to <em>#</em>.
+  </p>
+  <pre><code class="javascript">class Hello {
+  <em>#</em>bar         // 'hard' privacy
+  <em>private</em> foo  // 'soft' privacy
+}</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Two gotchas!</h3>
+    You can omit <code>this</code>, e.g. <code>return #foo</code> 🙄
+</div>
+<div>
+  <h3 class="our-header">Two gotchas!</h3>
+    You <em>cannot</em> use <code>[]</code>, e.g. <code>this['#foo']</code> 😱
+</div>
+<div>
+  <h3 class="our-header">Use cases</h3>
+  <p>The same of TypeScript's <code>private</code>.</p>
+  <h4>But.</h4>
+  <p>Reminder: <em>soft</em> privacy is easier to debug and allows better tools.</p>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <table class="support">
+    <caption>Class fields</caption>
+    <thead>
+      <tr>
+        <th><img src="img/chrome.svg" alt="Chrome logo"></th>
+        <th><img src="img/firefox.svg" alt="Firefox logo"></th>
+        <th><img src="img/safari.svg" alt="Safari logo"></th>
+        <th><img src="img/edge.svg" alt="Edge logo"></th>
+        <th><img src="img/samsung.svg" alt="Samsung Internet logo"></th>
+        <th><img src="img/node.svg" alt="Node.js logo"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ok">🏴</td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ok">🏴</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h2 class="our-header one-line">
+    <code>Array::flatMap</code><br>
+    <code>Array::<s>flatten</s> <s>smoosh</s> flat</code> 🚀3
+  </h2>
+  <notes>We can also return single items with flatMap (just like jQuery's map)</notes>
+  <pre><code class="javascript">[1, 2].flatMap(n => [n, n*n]) // [1, 1, 2, 4]
+
+const array = [1, [2, 3], [[4]]]
+array.flat()                // [1, 2, 3, [4]]
+array.flat(Infinity)        // [1, 2, 3, 4]</code></pre>
+</div>
+<div>
+  <h3 class="our-header one-line">Sooo&hellip; why not <em><code>flatten</code></em> again? 🤔</h3>
+  <div class="center">
+    <iframe style="width: 16em; height: 9em" src="https://www.youtube.com/embed/loqVnZywmvw?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <p>TL; DW: it's MooTools. <a href="https://github.com/mootools/mootools-core/issues/2402">Again</a>.</p>
+  </div>
+</div>
+<div>
+  <h4 class="our-header">Use case: <em><code>flat</code></em></h4>
+  <p>Because this is awkward and unclear:</p>
+  <pre><code class="javascript">const list = [[1], [2, 3], [4]]
+const flattened = [].<em>concat.apply</em>([], list)</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: <em>multiple item mapping</em></h4>
+  <pre><code class="javascript">function DescList({ items }) {
+  return &lt;dl>{
+    items.<em>flatMap</em>(({ term, desc }) => [
+      &lt;dt>{ term }&lt;/dt>,
+      &lt;dd>{ desc }&lt;/dd>
+    ])
+  }&lt;/dl>
+}</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: <em>filtering and mapping</em></h4>
+  <pre><code class="javascript">list.filter(...).map(...)</code></pre>
+  <p>Return an empty array for filtered elements:</p>
+  <pre><code class="javascript">list.<em>flatMap</em>(item => {
+  if (item.deleted) return []
+  return item.id
+})</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Trivia</h4>
+  <p>jQuery's <code>map</code> is just like <code>flatMap</code>.</p>
+</div>
+<div>
+  <h3 class="our-header">Support</h3>
+  <table class="support">
+    <caption><code>Array::flat</code>/<code>::flatMap</code></caption>
+    <thead>
+      <tr>
+        <th><img src="img/chrome.svg" alt="Chrome logo"></th>
+        <th><img src="img/firefox.svg" alt="Firefox logo"></th>
+        <th><img src="img/safari.svg" alt="Safari logo"></th>
+        <th><img src="img/edge.svg" alt="Edge logo"></th>
+        <th><img src="img/samsung.svg" alt="Samsung Internet logo"></th>
+        <th><img src="img/node.svg" alt="Node.js logo"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ok">69</td>
+        <td class="ok">62</td>
+        <td class="ok">12</td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+        <td class="ko"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <div data-background-image="img/indy.webp">
+  <h2 class="our-header invert" style="margin-top: 4em;">Stage 🚀2</h2>
+</div>
+<div>
+  <h2 class="our-header one-line">Static class fields/methods 🚀2</h2>
+  <pre><code class="javascript">class Covfefe {
+  static foo = { wtf: 9001 }
+  static getRandom(max = 10000) {
+    return Math.floor(Math.random(max))
+  }
+}</code></pre>
+<a class="link babel" href="https://babeljs.io/docs/plugins/transform-class-properties/">transform-class-properties</a>
+</div>
+<div>
+  <h3 class="our-header one-line">Use case: React's <code>propTypes</code> and <code>defaultProps</code></h3>
+  <pre><code class="javascript">class SimpleList extends React.Component {
+  static propTypes = PropTypes.arrayOf(PropTypes.string)
+  static defaultProps = { items: [] }
+  render() {
+    return &lt;ul>
+      { this.items.map(item => &lt;li>{ item }&lt;/li>) }
+    &lt;/ul>
+  }
+}</code></pre>
+</div>
+<div>
+  <h2 class="our-header one-line">Decorators 🚀2</h2>
+  <pre><code class="javascript">@defineElement('date-picker')
+class DatePicker extends HTMLElement {
+  @readonly
+  today = new Date();
+
+  @bound
+  clickHandler() {
+    // ...
+  }
+}</code></pre>
+</div>
+<div>
+  <h3>Decorators are <em>functions</em></h3>
+  <pre><code class="javascript">function bound(methodDescriptor) {
+  return {
+    ...methodDescriptor,
+    extras: [{ /* bound method descriptor */ }]
+  }
+}</code></pre>
+<a class="link babel" href="https://babeljs.io/docs/plugins/transform-decorators/">transform-decorators</a>
+</div>
+<div>
+  <h3 class="our-header">How do they work?</h3>
+  <p>Decorators:</p>
+  <ul>
+    <li>make most sense with the <em>class field proposal 🚀3</em>;</li>
+    <li>can be applied to <em>classes</em>, <em>methods</em> and <em>fields</em>;</li>
+    <li>to <em>plain objects</em> too;</li>
+    <li>also work for <em>private fields</em>;</li>
+    <li>get an <em>element descriptor</em> of various forms as the only parameter.</p></li>
+  </ul>
+</div>
+<div>
+  <h3>Element descriptors</h3>
+  <pre><code class="typescript">interface ElementDescriptor {
+  type: 'field' | 'method' | 'class';
+  // For classes only
+  elements: ElementDescriptor[];
+  // For fields and methods
+  key: string | Symbol;
+  placement: 'own' | 'prototype' | 'static';
+  descriptor: PropertyDescriptor;
+  // For fields only
+  initializer: () => any;
+}</code></pre>
+</div>
+<div>
+  <h3>Decorators return&hellip;</h3>
+  <pre><code class="typescript">interface DecoratedElementDescriptor
+    extends ElementDescriptor {
+  finisher: (klass: Function) => any;
+
+  // For classes only
+  constructor: (oldConstructor: Function) => any;
+
+  // For fields and methods
+  extras: (MethodDescriptor | FieldDescriptor)[];
+}</code></pre>
+</div>
+<div>
+  <h3 class="our-header one-line">What can we do with decorators?</h3>
+  <ul>
+    <li>Change an element's <em>descriptor</em>;</li>
+    <li>change an element's <em>initial value</em>;</li>
+    <li>change an element's <em>key</em>;</li>
+    <li>move an element from the <em>instance</em> to the <em>prototype</em>;</li>
+    <li><em>adding</em> elements to instances or prototypes;</li>
+    <li><em>do stuff</em> at the end of a class' <em>definition</em>;</li>
+    <li><em>change a class' constructor</em>;</li>
+    <li>&hellip; and  <em>much more!</em></li>
+  </ul>
+</div>
+<div>
+  <h3 class="our-header">Use case: easy <em>readonly</em> fields</h3>
+  <pre><code class="javascript">function readonly(fieldDescriptor) {
+  if (fieldDescriptor.type === 'class') {
+    throw TypeError('No can do')
+  }
+  const descriptor = {
+    ...fieldDescriptor.descriptor,
+    writable: false
+  }
+  return { ...fieldDescriptor, descriptor }
+}</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Use case: <em>auto-binding</em> methods</h3>
+  <pre><code class="javascript">function bound(methodDescriptor) {
+  return {
+    ...methodDescriptor,
+    extras: [{
+      kind: 'field',
+      key: methodDescriptor.key,
+      placement: 'own',
+      descriptor: {
+        ...methodDescriptor.descriptor,
+        value: undefined
+      },
+      initializer() {
+        return methodDescriptor.descriptor.value.bind(this)
+      }
+    }]
+  }
+}</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Use cases: <em>a ton!</em></h3>
+  <ul class="one-line">
+    <li>easily registering a <em>Custom Element</em>;</li>
+    <li><em>react</em> to property's value changes;</li>
+    <li>define (sort of) <em>protected</em> fields;</li>
+    <li>limit <em>how many times</em> a method can be called;</li>
+    <li>or <em>how often</em> (throttling, debouncing);</li>
+    <li>or <em>memoize</em> its returning values;</li>
+    <li>or <em>type check</em> its arguments;</li>
+    <li>class <em>ID generation</em>;</li>
+    <li>class <em>trait composition</em>;</li>
+    <li>value <em>formatting</em>;</li>
+    <li><em>prevent</em> method overriding;</li>
+    <li>&hellip; profit!</li>
+  </ul>
+</div>
+  <div>
+  <h2 class="our-header one-line">Stage 🚀1</h2>
+</div>
+<div data-background-image="img/tofu-lion.webp">
+  <h2 class="one-line invert" style="margin-top: 5em;">Hic sunt leones</h2>
+</div>
+<div>
+  <h2 class="our-header">Observables 🚀1</h2>
+  <p>A-la RxJS <em>5</em>:</p>
+  <pre><code class="javascript">function fromEvent(el, evName) {
+  return new Observable(observer => {
+    const handler = event => observer.next(event)
+    el.addEventListener(evName, handler)
+    return () => el.removeEventListener(evName, handler)
+  });
+}
+fromEvent(theInput, 'keydown')
+  .filter(({ key }) => key === 'Escape')
+  .subscribe(() => theInput.value = '')</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Rationale</h3>
+  <table class="simple-table center">
+    <thead>
+      <tr><th></th><th>Sync</th><th>Async</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Single value</th><td><span class="invisible">functions</span></td><td><span class="invisible">promises</span></td></tr>
+      <tr><th>Multi value</th><td><span class="invisible">generators</span></td><td><span class="invisible">async generators (?!)</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h3 class="our-header">Rationale</h3>
+  <table class="simple-table center">
+    <thead>
+      <tr><th></th><th>Sync</th><th>Async</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Single value</th><td><span>functions</span></td><td><span class="invisible">promises</span></td></tr>
+      <tr><th>Multi value</th><td><span class="invisible">generators</span></td><td><span class="invisible">async generators (?!)</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h3 class="our-header">Rationale</h3>
+  <table class="simple-table center">
+    <thead>
+      <tr><th></th><th>Sync</th><th>Async</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Single value</th><td><span>functions</span></td><td><span>promises</span></td></tr>
+      <tr><th>Multi value</th><td><span class="invisible">generators</span></td><td><span class="invisible">async generators (?!)</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h3 class="our-header">Rationale</h3>
+  <table class="simple-table center">
+    <thead>
+      <tr><th></th><th>Sync</th><th>Async</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Single value</th><td><span>functions</span></td><td><span>promises</span></td></tr>
+      <tr><th>Multi value</th><td><span>generators</span></td><td><span class="invisible">async generators (?!)</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h3 class="our-header">Rationale</h3>
+  <table class="simple-table center">
+    <thead>
+      <tr><th></th><th>Sync</th><th>Async</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Single value</th><td><span>functions</span></td><td><span>promises</span></td></tr>
+      <tr><th>Multi value</th><td><span>generators</span></td><td><span>async generators (?!)</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<div data-background-image="img/65-wat.webp"></div>
+<div>
+  <h2 class="our-header">Difference?! 🤔</h2>
+  <div class="two-columns">
+    <aside>
+      <p>Async generators</p>
+      <ul>
+        <li><em>single</em> consumer</li>
+        <li><em>pull</em> streams</li>
+        <li>better for <em>I/O</em></li>
+      </ul>
+    </aside>
+    <aside>
+      <p>Observables</p>
+      <ul>
+        <li><em>multiple</em> consumer</li>
+        <li><em>push</em> streams</li>
+        <li>better for <em>UI events</em></li>
+      </ul>
+    </aside>
+  </div>
+</div>
+<div>
+  <h3 class="our-header">Use case: the future of <em>event listening?</em></h3>
+  <pre><code class="javascript">const unsub = window.on('message')
+  .filter(({ type }) => type === 'DONE')
+  .subscribe(({ data }) => populate(data))
+
+...
+// Stop listening to the event
+unsub()</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Optional chaining 🚀1</h2>
+  <pre><code class="javascript">const street = address ? address.street : undefined
+// becomes...
+const street = address?.street
+
+// Also for optional methods:
+user.resetPassword?.()</code></pre>
+  <a class="link npm" href="https://www.npmjs.com/package/@babel/plugin-syntax-optional-chaining">@babel/plugin-syntax-optional-chaining</a>
+</div>
+<div data-background-image="img/yes.webp"></div>
+<div>
+  <h2 class="our-header"><code>do</code> expressions 🚀1</h2>
+  <p>Basically, a more compact IIFE:</p>
+  <pre><code class="javascript">const pwd = do {
+  let composed = plain + salt
+  if (mustHash) {
+    applyHash(composed, iterations)
+  }
+}</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: <em>saner JSX templates</em> 🙌</h4>
+  <pre><code class="javascript">function Header({ isLogged }) {
+  return &lt;header>{ <em>do</em> {
+    if (isLogged) &lt;LogoutButton />
+    else &lt;LoginButton />
+  }}&lt;/header>
+}</code></pre>
+  <a class="link babel" href="https://babeljs.io/docs/plugins/transform-do-expressions/">transform-do-expressions</a>
+</div>
+<div>
+  <h2 class="our-header">Partial applications 🚀1</h2>
+  <pre><code class="javascript">const powerOf2 = Math.pow.bind(null, 2)
+const square = n => n ** 2</code></pre>
+  <p class="invisible">now become:</p>
+  <pre class="invisible"><code class="javascript">const powerOf2 = Math.pow(2, <em>?</em>)
+const square = Math.pow(<em>?</em>, 2)</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Partial applications 🚀1</h2>
+  <pre><code class="javascript">const powerOf2 = Math.pow.bind(null, 2)
+const square = n => n ** 2</code></pre>
+  <p>now become:</p>
+  <pre><code class="javascript">const powerOf2 = Math.pow(2, <em>?</em>)
+const square = Math.pow(<em>?</em>, 2)</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Only for fixed arguments</h3>
+  <p>On hold a variant with the spread operator:</p>
+  <pre><code class="javascript">const wtfLog = console.error('🤯', <em>...</em>)
+
+wtfLog('Expecting', 'T_PAAMAYIM_NEKUDOTAYIM')
+// => 🤯 Expecting T_PAAMAYIM_NEKUDOTAYIM'</code></pre>
+</div>
+<div>
+  <h4 class="our-header">Use case: a <em>functional programmer's wild dream</em> 🤩</h4>
+  <pre><code class="javascript">function roundTo(number, rounding) {
+  return number - (number % rounding)
+}
+function clamp(number, min, max) {
+  return Math.min(Math.max(number, min), max)
+}
+const discounts = ratios
+  .map(roundTo(<em>?</em>, 1))
+  .map(clamp(<em>?</em>, 0, 100))</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Pipelines 🚀1</h2>
+  <img src="img/tubes.webp" alt="Futurama!">
+</div>
+<div>
+  <h2 class="our-header one-line">Avoid intermediary variables</h2>
+  <pre><code class="javascript">const result = await fetch(`/api/${entity}`)
+const data = await result.json()
+const cobj = new Coords(data.user.location)
+const coords = await cobj.resolve()</code></pre>
+  <p class="invisible">should be written as</p>
+  <pre class="invisible"><code class="javascript">const coords = await new Coords(
+  (await (
+    await fetch(`/api/${entity}`)).json()
+  ).user.location
+).resolve()</code></pre>
+</div>
+<div>
+  <h2 class="our-header one-line">Avoid intermediary variables</h2>
+  <pre><code class="javascript">const result = await fetch(`/api/${entity}`)
+const data = await result.json()
+const cobj = new Coords(data.user.location)
+const coords = await cobj.resolve()</code></pre>
+  <p>should be written as</p>
+  <pre><code class="javascript">const coords = await new Coords(
+  (await (
+    await fetch(`/api/${entity}`)).json()
+  ).user.location
+).resolve()</code></pre>
+</div>
+<div data-background-image="img/r-u-kidding-me.png"></div>
+<div>
+  <h2 class="our-header">Minimal proposal: sugar syntax</h2>
+  <pre><code class="javascript">value <em>|></em> f
+// desugars to
+f(value)</code></pre>
+  <p>Desugaring: <em>no need to <code>bind</code></em> methods:</p>
+  <pre><code class="javascript">const count = 16
+count |> 'na'.repeat
+      |> (x => x + ' Batman!')</code></pre>
+</div>
+<div>
+  <h3 class="one-line">Wonderful with partial applications</h3>
+  <pre><code class="javascript">player.score
+  |> roundTo(?, 100)
+  |> clamp(0, 1e6, ?)</code></pre>
+</div>
+<div>
+  <h3 class="our-header">Limitations</h3>
+  <ul>
+    <li>
+      ❌ Not allowed: <code>await</code>
+      <pre><code class="javascript">fetch('foo.json') |> <em>await</em></code></pre>
+    </li>
+    <li>
+      ❌ Not allowed: <code>new</code>
+      <pre><code class="javascript">'2018-09-26' |> new Date</code></pre>
+    </li>
+    <li>
+      😕 Functions should be enclosed:
+      <pre><code class="javascript">'world' |> (x => `Hello, ${x}!`)</code></pre>
+    </li>
+  </ul>
+</div>
+<div>
+  <h2 class="our-header">F# pipelines</h2>
+  <pre><code class="javascript">const coords = `/api/${entity}`
+  |> fetch
+  |> await
+  |> (resp => resp.json())
+  |> await
+  |> (data => new Coords(data.user.location))
+  |> (coords => coords.resolve())
+  |> await</code></pre>
+</div>
+<div>
+  <h2 class="our-header">Smart pipelines</h2>
+  <p>Two flavours: <em>bare</em> and <em>topic</em>:</p>
+  <pre><code class="javascript">const coords = `/api/${entity}`
+  |> fetch
+  |> await #
+  |> #.json()
+  |> await #
+  |> #.user.location
+  |> new Coords(#)
+  |> #.resolve()
+  |> await #</code></pre>
+</div>
+  <div>
+  <h2 class="our-header one-line">Honorable mentions</h2>
+  <ul>
+    <li>
+      Pattern matching
+      <pre><code class="javascript">const res = throwDice(6)
+<em>case</em> (res) {
+  <em>when</em> 6 -> console.log('Wow!')
+  <em>when</em> x if (x >= 7) -> throw Error('wtf?')
+}</code></pre>
+    </li>
+    <li>
+      Slice notation
+      <pre><code class="javascript">'hello world'[3:8]   // → 'lo wo'
+'hello world'[6:]    // → 'world'
+'hello world'[0:5:2] // → 'hlo'</code></pre>
+    </li>
+  </ul>
+</div>
+<div>
+  <h2 class="our-header one-line">Honorable mentions</h2>
+  <ul>
+    <li>
+      Last item/index
+      <pre><code class="javascript">const primes = [2, 3, 5, 7, 9]
+primes.<em>lastIndex</em>     // → 4
+primes.<em>lastItem</em>      // → 9
+primes.<em>lastItem</em> = 11 // → [2, 3, 5, 7, 11]</code></pre>
+    </li>
+    <li>
+      Freeze/seal syntax
+      <pre><code class="javascript">const foo = {<em>#</em> bar: 42 <em>#</em>} // Object.freeze({bar : 42})
+const arr = [<em>|</em> 'a', 'b' <em>|</em>] // Object.seal(['a', 'b'])</code></pre>
+    </li>
+</div>
+
+  <div data-background-image="img/js-dundee.png"></div>
+<div>
+  <h2 class="our-header">
+    That's all, folks!<br>
+    <small><a href="https://maxart2501.github.io/es2018-and-beyond-talk/bologna-js/">
+      maxart2501.github.io/es2018-and-beyond-talk/bologna-js/
+    </a></small>
+  </h2>
+  <ul class="one-line">
+    <li>
+      <h4>ECMAScript 2018: the final feature set - Dr. Axel Rauschmayer</h4>
+      <a href="http://2ality.com/2017/02/ecmascript-2018.html">
+        2ality.com/2017/02/ecmascript-2018.html
+      </a>
+    </li>
+    <li>
+      <h4>TC39 proposals repo</h4>
+      <a href="https://github.com/tc39/proposals">
+        github.com/tc39/proposals
+      </a>
+    </li>
+    <li>
+      <h4>kangax' ECMAScript compatibility tables</h4>
+      <a href="https://kangax.github.io/compat-table/esnext/">
+        kangax.github.io/compat-table/esnext/
+      </a>
+    </li>
+    <li>
+      <h4>Node.js' compatibility tables</h4>
+      <a href="https://node.green/">node.green</a>
+    </li>
+    <li>
+        <h4>Unicode property escapes in JavaScript regular expressions - Mathias Bynens</h4>
+      <a href="https://mathiasbynens.be/notes/es-unicode-property-escapes">
+        mathiasbynens.be/notes/es-unicode-property-escapes
+      </a>
+    </li>
+  </ul>
+</div>
+  <script src="js/big.js"></script>
+  <script src="js/highlight.js"></script>
+
+  <script src="js/index.js" type="module"></script>
+</body>
+</html>
